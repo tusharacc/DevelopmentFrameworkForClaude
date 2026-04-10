@@ -1,0 +1,34 @@
+{
+  "name": "dev-framework",
+  "displayName": "Development Framework",
+  "version": "1.0.0",
+  "description": "Multi-role development workflow orchestrator with artifact generation, workspace management, and auto-commit",
+  "author": "Claude Dev Framework",
+  "keywords": ["workflow", "framework", "PO", "architect", "developer", "testing"],
+  "commands": [
+    "dev"
+  ],
+  "agents": [
+    "po-requirements",
+    "architect-design",
+    "developer-executor",
+    "reviewer-quality",
+    "tester-validation",
+    "observer-observability"
+  ],
+  "skills": [
+    "framework-manager",
+    "artifact-generator",
+    "handoff-orchestrator",
+    "bug-manager"
+  ],
+  "state": {
+    "workspacesDir": ".dev-framework/workspaces",
+    "artifactsDir": ".dev-framework/artifacts",
+    "bugsDir": ".dev-framework/bugs",
+    "archivedDir": ".dev-framework/archived"
+  },
+  "changelog": {
+    "1.0.0": "Initial release with PO, Architect, Developer, Reviewer, Tester, and Observability roles"
+  }
+}
