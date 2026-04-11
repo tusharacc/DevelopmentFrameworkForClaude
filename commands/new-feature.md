@@ -1,114 +1,102 @@
 ---
 name: new-feature
-description: Start a new feature workflow (creates workspace, initializes state, begins PO phase)
+description: Start a new feature workflow - creates workspace, artifacts, git branch, and begins PO requirements phase
 arguments: feature-name
 examples:
   - /dev new-feature "User authentication"
   - /dev new-feature auth-v2
 ---
 
-# /dev new-feature
+You are starting a new feature development workflow for: **$ARGUMENTS**
 
-Start a new feature with full development workflow: PO → Architect → Developer → Reviewer → Tester.
+Follow these steps exactly:
 
-## Usage
+## Step 1: Prepare workspace name
 
+Convert the feature name "$ARGUMENTS" to a slug:
+- Lowercase
+- Replace spaces with hyphens
+- Remove special characters
+
+Example: "User Authentication System" → `user-authentication-system`
+
+## Step 2: Create workspace directories
+
+Run these commands:
+```bash
+mkdir -p .dev-framework/workspaces/$SLUG
+mkdir -p .dev-framework/artifacts
+mkdir -p .dev-framework/bugs
+mkdir -p .dev-framework/archived
 ```
-/dev new-feature <feature-name>
+
+## Step 3: Write state.json
+
+Create `.dev-framework/workspaces/$SLUG/state.json`:
+```json
+{
+  "name": "$SLUG",
+  "type": "feature",
+  "created": "<current ISO timestamp>",
+  "currentPhase": "po",
+  "status": "active",
+  "branch": "feature/$SLUG",
+  "roles": {
+    "po": { "status": "in-progress", "completed": null },
+    "architect": { "status": "pending", "completed": null },
+    "developer": { "status": "pending", "completed": null },
+    "reviewer": { "status": "pending", "completed": null },
+    "tester": { "status": "pending", "completed": null }
+  },
+  "artifacts": {
+    "po": null,
+    "architect": null,
+    "developer": null,
+    "reviewer": null,
+    "tester": null
+  },
+  "timelines": {}
+}
 ```
 
-## What Happens
+## Step 4: Write context.md
 
-1. **Workspace Creation**
-   - Creates `/.dev-framework/workspaces/feature-name/`
-   - Initializes `state.json` with metadata
-   - Creates `context.md` for workspace documentation
-   - Creates git branch `feature/feature-name`
+Create `.dev-framework/workspaces/$SLUG/context.md` with the workspace name, type, creation date, current phase (po), and status (active).
 
-2. **Artifact Generation**
-   - Creates empty PO requirements artifact
-   - Creates templates for all phases
-   - Registers artifacts in state.json
+## Step 5: Create PO artifact template
 
-3. **Initialization**
-   - Sets workspace as current
-   - Updates git branch
-   - Auto-commit: "feat(framework): new workspace feature-name"
+Create `.dev-framework/artifacts/$SLUG.po.md` with a requirements template including sections for: Problem Statement, User Stories, Functional Requirements, Non-Functional Requirements, Acceptance Criteria, Edge Cases, Dependencies.
 
-4. **Next Step**
-   - Invoke PO agent to gather requirements
-   - Ready for `/dev hand-off` when PO completes
+Update state.json to set `artifacts.po` to `artifacts/$SLUG.po.md`.
 
-## Example
+## Step 6: Set as current workspace
+
+Write the slug to `.dev-framework/current-workspace`:
+```bash
+echo "$SLUG" > .dev-framework/current-workspace
+```
+
+## Step 7: Create git branch and commit
 
 ```bash
-/dev new-feature "User authentication system"
-
-# Output:
-# ✓ Workspace created: user-authentication-system
-# ✓ Branch created: feature/user-authentication-system
-# ✓ Artifacts initialized
-# 
-# PO Agent starting...
-# [PO Agent gathers requirements]
-# 
-# When complete, run: /dev hand-off
+git checkout -b feature/$SLUG 2>/dev/null || git checkout feature/$SLUG
+git add .dev-framework/
+git commit -m "feat(framework): new workspace $SLUG"
 ```
 
-## Files Created
+If git is not available or fails, skip silently.
 
+## Step 8: Confirm and begin PO phase
+
+Output a brief summary:
 ```
-.dev-framework/
-├── workspaces/
-│   └── user-authentication-system/
-│       ├── state.json          # Workspace metadata and phase tracking
-│       ├── context.md          # Workspace context and roles
-│       └── git-info.json       # Git branch info
-└── artifacts/
-    ├── user-authentication-system.po.md          # PO template
-    ├── user-authentication-system.architect.md   # Architect template
-    ├── user-authentication-system.dev.md         # Developer template
-    ├── user-authentication-system.review.md      # Reviewer template
-    ├── user-authentication-system.test.md        # Tester template
-    └── user-authentication-system.observe.md     # Observability template
+✓ Workspace created: $SLUG
+✓ Branch: feature/$SLUG
+✓ Phase: PO Requirements
+
+Starting requirements gathering...
 ```
 
-## Workflow After Command
+Then immediately act as the **Product Owner agent**: begin asking the user focused discovery questions to gather requirements for "$ARGUMENTS". Keep questions concise — combine related topics. Your goal is to produce a complete `.dev-framework/artifacts/$SLUG.po.md` artifact.
 
-```
-/dev new-feature "feature-name"
-            ↓
-    [Workspace created]
-            ↓
-    [Git branch created]
-            ↓
-    [PO Agent invoked]
-            ↓
-    [User: gather requirements]
-            ↓
-    /dev hand-off (when PO complete)
-            ↓
-    [Architect phase begins]
-```
-
-## Related Commands
-
-- `/dev status` - Show current workspace state
-- `/dev hand-off` - Complete PO phase and advance to Architect
-- `/dev list-workspaces` - List all active workspaces
-- `/dev switch-workspace` - Switch to different workspace
-
-## Notes
-
-- Feature name can include spaces (use quotes)
-- Git branch name is auto-generated (lowercase, hyphens)
-- Workspace is set as current after creation
-- All artifacts are in Markdown format for easy git tracking
-- Auto-commit captures workspace initialization
-
-## Change Type: New Feature
-
-This command is for starting completely new features. For:
-- **Major Upgrade**: Use `/dev upgrade-feature` (creates separate workspace)
-- **Bug Fix**: Use `/dev bugfix` (reuses existing workspace)
-- **Minor Change**: Make changes directly, no new workspace needed
+When requirements are complete, tell the user to run `/dev hand-off` to advance to the Architect phase.

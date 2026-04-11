@@ -1,121 +1,66 @@
 ---
 name: status
-description: Show current workspace status and progress
+description: Show current workspace status, phase progress, and next action
 arguments: ""
 examples:
   - /dev status
 ---
 
-# /dev status
+Display the current development workflow status.
 
-Display the current workspace state, phase, and progress through the workflow.
+## Step 1: Read current workspace
 
-## Usage
+Read `.dev-framework/current-workspace` to get the active workspace slug.
 
+If the file doesn't exist or is empty, check if any workspaces exist:
+```bash
+ls .dev-framework/workspaces/ 2>/dev/null
 ```
-/dev status
-```
+If none exist, output "No active workspace. Create one with /dev new-feature." and stop.
 
-## Output Example
+## Step 2: Read state.json
+
+Read `.dev-framework/workspaces/$SLUG/state.json`.
+
+## Step 3: Display status
+
+Format and output a status summary like this:
 
 ```
 ═══════════════════════════════════════════════════════════════
-  DEVELOPMENT FRAMEWORK STATUS
+  WORKSPACE: $name ($type)
 ═══════════════════════════════════════════════════════════════
 
-CURRENT WORKSPACE: user-authentication
-  Type: feature
-  Status: active
-  Branch: feature/user-authentication
-  Created: 2026-04-10T10:30:00Z
+Status:  $status
+Branch:  $branch
+Created: $created
 
 WORKFLOW PROGRESS:
-  ✓ PO Requirements        [COMPLETE] - 2026-04-10 10:30-11:15
-  → Architect Design       [IN PROGRESS] - Started 2026-04-10 11:15
-    Developer              [PENDING]
-    Reviewer               [PENDING]
-    Tester                 [PENDING]
-  
-ARTIFACTS:
-  ✓ user-auth.po.md                  - Requirements gathered
-  → user-auth.architect.md           - Design in progress
-    user-auth.dev.md                 - Waiting for phase
-    user-auth.review.md              - Waiting for phase
-    user-auth.test.md                - Waiting for phase
-    user-auth.observe.md             - Running parallel
+  [✓/→/○] PO Requirements    [$status] $completedTime
+  [✓/→/○] Architect Design   [$status] $completedTime
+  [✓/→/○] Developer          [$status] $completedTime
+  [✓/→/○] Reviewer           [$status] $completedTime
+  [✓/→/○] Tester             [$status] $completedTime
 
-ROLE ASSIGNMENTS:
-  PO:        claude@dev     [complete]
-  Architect: claude@dev     [in-progress]
-  Developer: [unassigned]   [pending]
-  Reviewer:  [unassigned]   [pending]
-  Tester:    [unassigned]   [pending]
+ARTIFACTS:
+  [✓/○] $SLUG.po.md
+  [✓/○] $SLUG.architect.md
+  [✓/○] $SLUG.developer.md
+  [✓/○] $SLUG.reviewer.md
+  [✓/○] $SLUG.tester.md
 
 NEXT ACTION:
-  When Architect finishes design review, run: /dev hand-off
+  $actionText
 
 ═══════════════════════════════════════════════════════════════
 ```
 
-## Information Displayed
+Legend: ✓ = complete, → = in progress, ○ = pending
 
-### Workspace Summary
-- **Name**: Feature/workspace name
-- **Type**: feature|upgrade|bugfix|minor
-- **Status**: active|blocked|archived
-- **Branch**: Git branch name
-- **Created**: Timestamp of workspace creation
-
-### Workflow Progress
-- Phase completion status (✓ complete, → in-progress, ○ pending)
-- Start and completion times for each phase
-- Total time in current phase
-
-### Artifacts
-- Which artifacts have been created and updated
-- Last update timestamp for each artifact
-- Quick link to view specific artifacts
-
-### Role Assignments
-- Who is assigned to each role
-- Current status of each role
-- Which roles are unassigned
-
-### Next Steps
-- Suggested next action
-- Command to run to advance workflow
-- Details on what's blocking progress (if any)
-
-## Related Commands
-
-- `/dev view-artifact <name>` - View specific artifact content
-- `/dev hand-off` - Complete current phase and advance
-- `/dev switch-workspace <name>` - Switch to different workspace
-- `/dev list-workspaces` - Show all workspaces
-
-## Notes
-
-- Shows most recent active workspace if none specified
-- Updates in real-time from state.json
-- Shows observability status in parallel (if running)
-- Indicates which phase is waiting for human action
-
-## Without Active Workspace
-
-If no workspace is active:
-
-```
-No active workspace found.
-
-Active workspaces:
-  • user-authentication (feature) - Phase: developer
-  • bug-fix-login (bugfix) - Phase: po
-  • mobile-redesign (upgrade) - Phase: complete
-
-Switch to a workspace:
-  /dev switch-workspace user-authentication
-  /dev switch-workspace bug-fix-login
-
-Or create a new one:
-  /dev new-feature "new-feature-name"
-```
+Next action text based on phase:
+- `po` → "Gather requirements, then run: /dev hand-off"
+- `architect` → "Complete design, then run: /dev hand-off"
+- `developer` → "Complete implementation, then run: /dev hand-off"
+- `reviewer` → "Complete review, then run: /dev hand-off"
+- `tester` → "Complete testing, then run: /dev hand-off"
+- `complete` → "Workflow complete! Run: /dev archive-feature $SLUG"

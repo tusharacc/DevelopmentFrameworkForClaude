@@ -1,184 +1,75 @@
 ---
 name: observe
-description: Run observability checks in parallel (linting, types, security, performance, accessibility)
+description: Run observability checks on the current workspace (linting, types, security, performance, accessibility)
 arguments: ""
 examples:
   - /dev observe
 ---
 
-# /dev observe
+Run observability checks for the current workspace.
 
-Manually trigger observability checks. Normally runs in parallel during development.
+## Step 1: Identify current workspace
 
-## Usage
+Read `.dev-framework/current-workspace`. If empty, output "No active workspace." and stop.
 
-```
-/dev observe
-```
+## Step 2: Determine project type
 
-## What Runs
+Check for relevant config files to understand what checks apply:
+- `package.json` → Node/JS/TS project
+- `tsconfig.json` → TypeScript
+- `pyproject.toml` / `requirements.txt` → Python
+- `Cargo.toml` → Rust
 
-1. **Linting & Format**
-   - ESLint: code style violations
-   - Prettier: formatting check
-   - Stylelint: stylesheet linting
+## Step 3: Run available checks
 
-2. **Type Safety**
-   - TypeScript: type errors
-   - Type coverage: % of code with types
+Run each check that is applicable to the project. Output results as you go:
 
-3. **Security**
-   - Secret scanning: API keys, credentials
-   - Dependency audit: vulnerable packages
-   - SAST: security pattern analysis
-
-4. **Performance**
-   - Bundle size: code size impact
-   - Load time: performance metrics
-   - Memory usage: leaks, efficiency
-
-5. **Accessibility**
-   - WCAG 2.1 AA: compliance check
-   - Keyboard navigation: keyboard access
-   - Screen reader: assistive tech support
-
-## Output
-
-```
-════════════════════════════════════════════════════
-  OBSERVABILITY CHECKS
-════════════════════════════════════════════════════
-
-[1/5] Linting & Format...
-✓ ESLint: 0 errors
-✓ Prettier: Formatted
-⚠ Stylelint: 2 warnings
-
-[2/5] Type Safety...
-✓ TypeScript: 0 errors
-📊 Coverage: 92%
-
-[3/5] Security Scanning...
-⚠ Secrets: 0 found (but check carefully)
-✗ Dependencies: 3 medium vulnerabilities
-  • lodash@4.17.19 (upgrade to 4.17.21)
-  • moment@2.29.0 (consider @date-fns)
-
-[4/5] Performance...
-✓ Bundle: +2 KB (+0.5%)
-✓ Load Time: +50 ms
-✓ Memory: Stable
-
-[5/5] Accessibility...
-✓ WCAG 2.1 AA: Compliant
-✓ Keyboard: Full navigation
-✓ Screen Readers: Tested
-
-════════════════════════════════════════════════════
-  SUMMARY
-════════════════════════════════════════════════════
-
-✓ Overall: GOOD
-⚠ Warnings: 3 (address before release)
-✗ Critical Issues: 1 (fix before release)
-
-See observability artifact for details:
-  /dev view-artifact {feature-name}.observe.md
-
-════════════════════════════════════════════════════
-```
-
-## When to Use
-
-**Automatic** (during development):
-- Runs in parallel with Developer and Reviewer phases
-- Continuous monitoring
-- Updates throughout development
-
-**Manual** (when needed):
-- Run `/dev observe` anytime
-- Check progress independently
-- Get fresh scan results
-- Before handoff to verify
-
-## Issues by Severity
-
-| Level | Action | Examples |
-|-------|--------|----------|
-| Critical | Must fix | Type errors, secrets, vulnerabilities |
-| High | Should fix | Linting errors, a11y failures |
-| Medium | Nice to fix | Warnings, performance issues |
-| Low | Optional | Style suggestions |
-
-## After Checks
-
-Results saved in artifact:
-```
-.dev-framework/artifacts/{feature-name}.observe.md
-```
-
-View detailed results:
+**Linting**
 ```bash
-/dev view-artifact {feature-name}.observe.md
+npx eslint . --max-warnings=0 2>/dev/null || \
+  python -m flake8 . 2>/dev/null || \
+  echo "No linter configured"
 ```
 
-## Tools Used
-
-- **ESLint** - JavaScript linting
-- **Prettier** - Code formatting
-- **Stylelint** - CSS/SCSS linting
-- **TypeScript** - Type checking
-- **npm audit** - Dependency security
-- **TruffleHog/gitleaks** - Secret scanning
-- **webpack-bundle-analyzer** - Bundle analysis
-- **Lighthouse** - Performance audit
-- **axe-core** - Accessibility testing
-
-## Performance Comparison
-
-Observability tracks changes:
-```
-Feature baseline:
-  Bundle: 125 KB
-  Load Time: 2.5s
-  
-After implementation:
-  Bundle: 127 KB (+2 KB, +1.6%)
-  Load Time: 2.55s (+50 ms, +2%)
-  
-Assessment: Acceptable impact
+**Type checking**
+```bash
+npx tsc --noEmit 2>/dev/null || \
+  python -m mypy . 2>/dev/null || \
+  echo "No type checker configured"
 ```
 
-## Security Focus
+**Security / dependency audit**
+```bash
+npm audit --audit-level=moderate 2>/dev/null || \
+  pip-audit 2>/dev/null || \
+  echo "No audit tool found"
+```
 
-Checks for common issues:
-- API keys hardcoded
-- Database credentials exposed
-- JWT tokens in code
-- Sensitive data in logs
-- Known vulnerable dependencies
+**Secret scanning** (check for common patterns)
+```bash
+grep -rn "api_key\|secret\|password\|token" --include="*.ts" --include="*.py" --include="*.js" \
+  --exclude-dir=node_modules --exclude-dir=.git . 2>/dev/null | grep -v "test\|spec\|example" | head -10
+```
 
-## Accessibility Standards
+## Step 4: Write results to artifact
 
-WCAG 2.1 Level AA compliance:
-- Color contrast: 4.5:1 for text
-- Keyboard accessible: all features
-- Screen reader: proper ARIA labels
-- Focus indicators: visible
-- Alternative text: images described
+Read the workspace slug from `.dev-framework/current-workspace`.
+Append results to `.dev-framework/artifacts/$SLUG.observe.md`, creating it if it doesn't exist.
 
-## Tips
+## Step 5: Output summary
 
-1. **Run Early**: Check frequently during development
-2. **Fix Critical**: Don't handoff with critical issues
-3. **Review Results**: Understand what each issue means
-4. **Improve Baseline**: Fix accessibility/security proactively
-5. **Document**: Note any acceptable trade-offs
+```
+════════════════════════════════
+  OBSERVABILITY: $SLUG
+════════════════════════════════
 
-## Related Commands
+[results from each check]
 
-- `/dev status` - Check current phase
-- `/dev view-artifact {name}.observe.md` - View detailed report
-- `/dev hand-off` - Submit for next phase (with clean observability)
+Summary:
+  Critical issues: N (must fix before handoff)
+  Warnings: N
+  Results saved to: .dev-framework/artifacts/$SLUG.observe.md
+════════════════════════════════
+```
 
-Observability runs in parallel throughout development to catch issues early!
+Flag any critical issues (secrets found, type errors, high-severity vulnerabilities) clearly so the user knows what must be fixed before running `/dev hand-off`.
