@@ -9,7 +9,7 @@ examples:
 
 Start a major feature upgrade for: **$ARGUMENTS**
 
-This follows the same full workflow as new-feature (PO → Architect → Developer → Reviewer → Tester) but creates an isolated upgrade workspace so the original feature continues running in parallel.
+This follows the same full workflow as new-feature (PO → Architect → Developer → Reviewer → Tester → Executor → PO Approval) but creates an isolated upgrade workspace so the original feature continues running in parallel.
 
 ## Step 1: Create workspace slug
 
@@ -39,14 +39,18 @@ Create `.dev-framework/workspaces/$SLUG/state.json`:
     "architect": { "status": "pending", "completed": null },
     "developer": { "status": "pending", "completed": null },
     "reviewer": { "status": "pending", "completed": null },
-    "tester": { "status": "pending", "completed": null }
+    "tester": { "status": "pending", "completed": null },
+    "executor": { "status": "pending", "completed": null },
+    "po-approval": { "status": "pending", "completed": null }
   },
   "artifacts": {
     "po": "artifacts/$SLUG.po.md",
     "architect": null,
     "developer": null,
     "reviewer": null,
-    "tester": null
+    "tester": null,
+    "executor": null,
+    "po-approval": null
   },
   "timelines": {}
 }

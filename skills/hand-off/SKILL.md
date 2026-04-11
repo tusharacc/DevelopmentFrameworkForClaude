@@ -64,7 +64,7 @@ When handing off from `reviewer`, read the reviewer artifact and check for open 
 - Set `currentPhase` to `$nextPhase`
 - Set `roles[$nextPhase].status` to `"in-progress"`
 - Add `timelines[$currentPhase + "_complete"]` = current timestamp
-- Add `timelines[$nextPhase + "_start"]` = current timestamp
+- For `timelines[$nextPhase + "_start"]`: if a value already exists (phase is being revisited), append a new key with a counter suffix, e.g. `developer_start_2`, `developer_start_3`. This preserves the full audit trail across review loops without overwriting earlier entries.
 
 ## Step 5: Create next phase artifact template
 
