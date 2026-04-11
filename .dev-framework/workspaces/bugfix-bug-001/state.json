@@ -1,0 +1,22 @@
+{
+  "name": "bugfix-bug-001",
+  "type": "bugfix",
+  "bugId": "BUG-001",
+  "created": "2026-04-11T00:00:00Z",
+  "currentPhase": "developer",
+  "status": "active",
+  "branch": "bugfix/bugfix-bug-001",
+  "roles": {
+    "developer": { "status": "in-progress", "completed": null },
+    "reviewer": { "status": "pending", "completed": null },
+    "tester": { "status": "pending", "completed": null }
+  },
+  "artifacts": {
+    "developer": "artifacts/bugfix-bug-001.developer.md",
+    "reviewer": null,
+    "tester": null
+  },
+  "timelines": {
+    "developer_start": "2026-04-11T00:00:00Z"
+  }
+}

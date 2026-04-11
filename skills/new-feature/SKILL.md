@@ -46,14 +46,18 @@ Create `.dev-framework/workspaces/$SLUG/state.json`:
     "architect": { "status": "pending", "completed": null },
     "developer": { "status": "pending", "completed": null },
     "reviewer": { "status": "pending", "completed": null },
-    "tester": { "status": "pending", "completed": null }
+    "tester": { "status": "pending", "completed": null },
+    "executor": { "status": "pending", "completed": null },
+    "po-approval": { "status": "pending", "completed": null }
   },
   "artifacts": {
     "po": null,
     "architect": null,
     "developer": null,
     "reviewer": null,
-    "tester": null
+    "tester": null,
+    "executor": null,
+    "po-approval": null
   },
   "timelines": {}
 }

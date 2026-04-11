@@ -1,0 +1,12 @@
+{
+  "bugs": [
+    {
+      "id": "BUG-001",
+      "title": "Review and Test not triggered after coding step",
+      "severity": "critical",
+      "status": "open",
+      "created": "2026-04-11T00:00:00Z",
+      "workspace": null
+    }
+  ]
+}

@@ -42,12 +42,16 @@ Create `.dev-framework/workspaces/$SLUG/state.json`:
   "roles": {
     "developer": { "status": "in-progress", "completed": null },
     "reviewer": { "status": "pending", "completed": null },
-    "tester": { "status": "pending", "completed": null }
+    "tester": { "status": "pending", "completed": null },
+    "executor": { "status": "pending", "completed": null },
+    "po-approval": { "status": "pending", "completed": null }
   },
   "artifacts": {
     "developer": "artifacts/$SLUG.developer.md",
     "reviewer": null,
-    "tester": null
+    "tester": null,
+    "executor": null,
+    "po-approval": null
   },
   "timelines": {}
 }
