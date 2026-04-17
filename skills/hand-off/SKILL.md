@@ -31,15 +31,19 @@ and stop.
 
 ## Step 3: Determine next phase
 
-Phase sequence:
-- `po` → `architect`
-- `architect` → `developer`
-- `developer` → `reviewer`
-- `reviewer` → `developer` (if high/medium issues found — see reviewer branching below)
-- `reviewer` → `tester` (only when no high/medium issues remain)
-- `tester` → `executor`
-- `executor` → `po-approval`
-- `po-approval` → `complete`
+Read `workflowType` from `state.json` (default to `full` if absent) and use the matching sequence:
+
+**full** (new-feature, upgrade):
+`po → architect → developer → reviewer → tester → executor → po-approval → complete`
+
+**bugfix**:
+`developer → reviewer → tester → executor → po-approval → complete`
+
+**hotfix**:
+`developer → reviewer → po-approval → complete`
+
+**minor**:
+`developer → reviewer → po-approval → complete`
 
 If `currentPhase` is already `complete`, output "Workflow is already complete. Use /dev archive-feature to archive." and stop.
 
@@ -51,7 +55,7 @@ When handing off from `reviewer`, read the reviewer artifact and check for open 
    - Output: "Reviewer found high/medium issues. Returning to Developer for fixes."
    - Developer must resolve all high/medium comments before handing off again.
 
-2. **Only low issues (or none)** → next phase is `tester`
+2. **Only low issues (or none)** → next phase is the one after `reviewer` in the workspace's `workflowType` sequence (`tester` for full/bugfix, `po-approval` for hotfix/minor)
    - For each low-priority comment, automatically create a bug entry in `.dev-framework/bugs/`:
      - Generate next BUG-XXX ID from `bugs.json`
      - Write `.dev-framework/bugs/bug-XXX.md` with the comment as description, severity `low`, status `open`
