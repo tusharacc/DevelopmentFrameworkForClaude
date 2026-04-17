@@ -1,15 +1,16 @@
 {
   "name": "mandatory-plugin-enforcement",
   "type": "feature",
+  "workflowType": "full",
   "created": "2026-04-17T00:00:00Z",
-  "currentPhase": "developer",
+  "currentPhase": "reviewer",
   "status": "active",
   "branch": "feature/mandatory-plugin-enforcement",
   "roles": {
     "po": { "status": "complete", "completed": "2026-04-17T01:00:00Z" },
     "architect": { "status": "complete", "completed": "2026-04-17T02:00:00Z" },
-    "developer": { "status": "in-progress", "completed": null },
-    "reviewer": { "status": "pending", "completed": null },
+    "developer": { "status": "complete", "completed": "2026-04-17T03:00:00Z" },
+    "reviewer": { "status": "in-progress", "completed": null },
     "tester": { "status": "pending", "completed": null },
     "executor": { "status": "pending", "completed": null },
     "po-approval": { "status": "pending", "completed": null }
@@ -18,7 +19,7 @@
     "po": "artifacts/mandatory-plugin-enforcement.po.md",
     "architect": "artifacts/mandatory-plugin-enforcement.architect.md",
     "developer": "artifacts/mandatory-plugin-enforcement.developer.md",
-    "reviewer": null,
+    "reviewer": "artifacts/mandatory-plugin-enforcement.reviewer.md",
     "tester": null,
     "executor": null,
     "po-approval": null
@@ -28,6 +29,8 @@
     "po_complete": "2026-04-17T01:00:00Z",
     "architect_start": "2026-04-17T01:00:00Z",
     "architect_complete": "2026-04-17T02:00:00Z",
-    "developer_start": "2026-04-17T02:00:00Z"
+    "developer_start": "2026-04-17T02:00:00Z",
+    "developer_complete": "2026-04-17T03:00:00Z",
+    "reviewer_start": "2026-04-17T03:00:00Z"
   }
 }
