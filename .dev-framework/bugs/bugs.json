@@ -23,6 +23,22 @@
       "status": "open",
       "created": "2026-04-11T00:00:00Z",
       "workspace": null
+    },
+    {
+      "id": "BUG-004",
+      "title": "Step 0 stop instruction is passive — Claude may wait instead of stopping",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-04-17T00:00:00Z",
+      "workspace": "git-mandatory-and-daily-skills"
+    },
+    {
+      "id": "BUG-005",
+      "title": "start-of-day has no fallback for ambiguous continue/new response",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-04-17T00:00:00Z",
+      "workspace": "git-mandatory-and-daily-skills"
     }
   ]
 }

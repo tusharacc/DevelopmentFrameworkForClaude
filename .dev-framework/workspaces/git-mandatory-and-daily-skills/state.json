@@ -10,7 +10,7 @@
     "po": { "status": "complete", "completed": "2026-04-17T08:30:00Z" },
     "architect": { "status": "complete", "completed": "2026-04-17T09:00:00Z" },
     "developer": { "status": "in-progress", "completed": null },
-    "reviewer": { "status": "pending", "completed": null },
+    "reviewer": { "status": "complete", "completed": "2026-04-17T09:45:00Z" },
     "tester": { "status": "pending", "completed": null },
     "executor": { "status": "pending", "completed": null },
     "po-approval": { "status": "pending", "completed": null }
@@ -19,7 +19,7 @@
     "po": "artifacts/git-mandatory-and-daily-skills.po.md",
     "architect": "artifacts/git-mandatory-and-daily-skills.architect.md",
     "developer": "artifacts/git-mandatory-and-daily-skills.developer.md",
-    "reviewer": null,
+    "reviewer": "artifacts/git-mandatory-and-daily-skills.reviewer.md",
     "tester": null,
     "executor": null,
     "po-approval": null
@@ -29,6 +29,10 @@
     "po_complete": "2026-04-17T08:30:00Z",
     "architect_start": "2026-04-17T08:30:00Z",
     "architect_complete": "2026-04-17T09:00:00Z",
-    "developer_start": "2026-04-17T09:00:00Z"
+    "developer_start": "2026-04-17T09:00:00Z",
+    "developer_complete": "2026-04-17T09:30:00Z",
+    "reviewer_start": "2026-04-17T09:30:00Z",
+    "reviewer_complete": "2026-04-17T09:45:00Z",
+    "developer_start_2": "2026-04-17T09:45:00Z"
   }
 }

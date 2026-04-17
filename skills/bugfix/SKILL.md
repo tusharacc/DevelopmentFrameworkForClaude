@@ -12,7 +12,7 @@ Start a bug fix workflow for: **$ARGUMENTS**
 ## Step 0: Check for existing active workspace
 
 Scan `.dev-framework/workspaces/*/state.json` for any workspace with `"status": "active"`.
-If one is found and its name is not `$SLUG`, output:
+If one is found, output:
 
 ```
 STOP: Active workspace found — $existing_name (phase: $phase).
@@ -22,7 +22,7 @@ Finish or archive it before starting a new bugfix.
   → To switch:  /dev switch-workspace $existing_name
 ```
 
-Do not proceed until the active workspace is resolved.
+Output this message and stop. Do not execute any further steps in this skill.
 
 ## Step 1: Look up bug details
 

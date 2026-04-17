@@ -28,7 +28,7 @@ If $SLUG is set and status is `active`, read the current phase artifact path fro
 ## Step 3: Collect today's commits
 
 ```bash
-git log --oneline --since="6am today" --format="%s" 2>/dev/null || echo "(no git history)"
+git log --since="6am today" --format="%s" 2>/dev/null || echo "(no git history)"
 ```
 
 Use the output as the "Done this session" list. If empty, write "No commits recorded this session."
