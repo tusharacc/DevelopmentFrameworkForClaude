@@ -30,6 +30,7 @@ Create `.dev-framework/workspaces/$SLUG/state.json`:
 {
   "name": "$SLUG",
   "type": "upgrade",
+  "workflowType": "full",
   "created": "<current ISO timestamp>",
   "currentPhase": "po",
   "status": "active",

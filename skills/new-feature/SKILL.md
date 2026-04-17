@@ -37,6 +37,7 @@ Create `.dev-framework/workspaces/$SLUG/state.json`:
 {
   "name": "$SLUG",
   "type": "feature",
+  "workflowType": "full",
   "created": "<current ISO timestamp>",
   "currentPhase": "po",
   "status": "active",

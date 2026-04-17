@@ -16,7 +16,7 @@ if [ ! -f "$CURRENT_WS_FILE" ]; then
   exit 0
 fi
 
-SLUG=$(cat "$CURRENT_WS_FILE" | tr -d '[:space:]')
+SLUG=$(tr -d '[:space:]' < "$CURRENT_WS_FILE")
 if [ -z "$SLUG" ]; then
   exit 0
 fi
@@ -36,14 +36,11 @@ except:
     print('')
 " 2>/dev/null)
 
-# Read the tool input from stdin to check the file being written
-INPUT=$(cat)
-
-# Extract file_path from tool input
+# Extract file_path from tool input (read stdin directly in python — never interpolate JSON into shell strings)
 FILE_PATH=$(python3 -c "
 import json, sys
 try:
-    data = json.loads('''$INPUT''')
+    data = json.load(sys.stdin)
     print(data.get('tool_input', {}).get('file_path', ''))
 except:
     print('')

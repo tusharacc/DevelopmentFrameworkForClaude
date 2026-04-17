@@ -9,6 +9,15 @@
             "command": "bash hooks/check-phase.sh"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash hooks/check-bash-phase.sh"
+          }
+        ]
       }
     ]
   }

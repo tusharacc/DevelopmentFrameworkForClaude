@@ -65,7 +65,7 @@ These are hard rules. They apply regardless of what the user asks.
 
 ## Hand-off Trigger Vocabulary
 
-The following user inputs must be treated as a hand-off command — read the current phase and execute `dev-framework:hand-off`:
+The following user inputs must be treated as a hand-off — invoke `dev-framework:continue` which handles artifact verification and workflow-type-aware phase sequencing:
 
 - "continue", "next", "next step", "proceed", "move on"
 - "done", "I'm done", "finished", "complete", "phase complete"
@@ -101,7 +101,7 @@ If verification fails:
 
 When acting as Reviewer:
 - **High / Medium** issues → hand-off returns to `developer`. Developer must fix before re-review.
-- **Low** issues → file each as a new bug entry in `.dev-framework/bugs/` and advance to `tester`.
+- **Low** issues → file each as a new bug entry in `.dev-framework/bugs/` and advance to the next phase in the workspace's workflow chain (check `workflowType` in `state.json`: `tester` for full/bugfix, `po-approval` for hotfix/minor).
 
 ---
 
