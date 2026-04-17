@@ -1,0 +1,30 @@
+{
+  "name": "git-mandatory-and-daily-skills",
+  "type": "feature",
+  "workflowType": "full",
+  "created": "2026-04-17T08:00:00Z",
+  "currentPhase": "po",
+  "status": "active",
+  "branch": "feature/git-mandatory-and-daily-skills",
+  "roles": {
+    "po": { "status": "in-progress", "completed": null },
+    "architect": { "status": "pending", "completed": null },
+    "developer": { "status": "pending", "completed": null },
+    "reviewer": { "status": "pending", "completed": null },
+    "tester": { "status": "pending", "completed": null },
+    "executor": { "status": "pending", "completed": null },
+    "po-approval": { "status": "pending", "completed": null }
+  },
+  "artifacts": {
+    "po": "artifacts/git-mandatory-and-daily-skills.po.md",
+    "architect": null,
+    "developer": null,
+    "reviewer": null,
+    "tester": null,
+    "executor": null,
+    "po-approval": null
+  },
+  "timelines": {
+    "po_start": "2026-04-17T08:00:00Z"
+  }
+}
