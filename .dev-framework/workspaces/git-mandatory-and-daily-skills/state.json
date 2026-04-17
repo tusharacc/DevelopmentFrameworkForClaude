@@ -1,0 +1,47 @@
+{
+  "name": "git-mandatory-and-daily-skills",
+  "type": "feature",
+  "workflowType": "full",
+  "created": "2026-04-17T08:00:00Z",
+  "currentPhase": "complete",
+  "status": "complete",
+  "branch": "feature/git-mandatory-and-daily-skills",
+  "roles": {
+    "po": { "status": "complete", "completed": "2026-04-17T08:30:00Z" },
+    "architect": { "status": "complete", "completed": "2026-04-17T09:00:00Z" },
+    "developer": { "status": "complete", "completed": "2026-04-17T10:00:00Z" },
+    "reviewer": { "status": "complete", "completed": "2026-04-17T10:30:00Z" },
+    "tester": { "status": "complete", "completed": "2026-04-17T11:00:00Z" },
+    "executor": { "status": "complete", "completed": "2026-04-17T11:30:00Z" },
+    "po-approval": { "status": "complete", "completed": "2026-04-17T12:00:00Z" }
+  },
+  "artifacts": {
+    "po": "artifacts/git-mandatory-and-daily-skills.po.md",
+    "architect": "artifacts/git-mandatory-and-daily-skills.architect.md",
+    "developer": "artifacts/git-mandatory-and-daily-skills.developer.md",
+    "reviewer": "artifacts/git-mandatory-and-daily-skills.reviewer.md",
+    "tester": "artifacts/git-mandatory-and-daily-skills.tester.md",
+    "executor": "artifacts/git-mandatory-and-daily-skills.executor.md",
+    "po-approval": "artifacts/git-mandatory-and-daily-skills.po-approval.md"
+  },
+  "timelines": {
+    "po_start": "2026-04-17T08:00:00Z",
+    "po_complete": "2026-04-17T08:30:00Z",
+    "architect_start": "2026-04-17T08:30:00Z",
+    "architect_complete": "2026-04-17T09:00:00Z",
+    "developer_start": "2026-04-17T09:00:00Z",
+    "developer_complete": "2026-04-17T09:30:00Z",
+    "reviewer_start": "2026-04-17T09:30:00Z",
+    "reviewer_complete": "2026-04-17T09:45:00Z",
+    "developer_start_2": "2026-04-17T09:45:00Z",
+    "developer_complete_2": "2026-04-17T10:00:00Z",
+    "reviewer_start_2": "2026-04-17T10:00:00Z",
+    "reviewer_complete_2": "2026-04-17T10:30:00Z",
+    "tester_start": "2026-04-17T10:30:00Z",
+    "tester_complete": "2026-04-17T11:00:00Z",
+    "executor_start": "2026-04-17T11:00:00Z",
+    "executor_complete": "2026-04-17T11:30:00Z",
+    "po-approval_start": "2026-04-17T11:30:00Z",
+    "po-approval_complete": "2026-04-17T12:00:00Z"
+  }
+}

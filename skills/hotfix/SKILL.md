@@ -12,6 +12,21 @@ Start a hotfix workflow for: **$ARGUMENTS**
 Hotfix is an abbreviated workflow. Tester and Executor phases are skipped for speed.
 Phase chain: **Developer → Reviewer → PO Approval → Complete**
 
+## Step 0: Check for existing active workspace
+
+Scan `.dev-framework/workspaces/*/state.json` for any workspace with `"status": "active"`.
+If one is found, output:
+
+```
+STOP: Active workspace found — $existing_name (phase: $phase).
+Finish or archive it before starting a new hotfix.
+  → To resume:  say "continue"
+  → To archive: /dev archive-feature $existing_name
+  → To switch:  /dev switch-workspace $existing_name
+```
+
+Output this message and stop. Do not execute any further steps in this skill.
+
 ## Step 1: Create workspace slug
 
 Convert "$ARGUMENTS" to a slug: lowercase, hyphens for spaces, remove special characters.
@@ -58,10 +73,11 @@ Create `.dev-framework/artifacts/$SLUG.developer.md` with sections:
 - Files Changed
 - Risk Assessment
 
-## Step 5: Set as current workspace and create branch
+## Step 5: Set as current workspace and ensure git repo
 
 ```bash
 echo "$SLUG" > .dev-framework/current-workspace
+git status 2>/dev/null || git init
 git checkout -b hotfix/$SLUG 2>/dev/null || git checkout hotfix/$SLUG
 git add .dev-framework/
 git commit -m "hotfix(framework): workspace $SLUG"

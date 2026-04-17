@@ -20,7 +20,22 @@ Convert the feature name "$ARGUMENTS" to a slug:
 
 Example: "User Authentication System" → `user-authentication-system`
 
-## Step 2: Create workspace directories
+## Step 2: Check for existing active workspace
+
+Scan `.dev-framework/workspaces/*/state.json` for any workspace with `"status": "active"`.
+If one is found and its name is not `$SLUG`, output:
+
+```
+STOP: Active workspace found — $existing_name (phase: $phase).
+Finish or archive it before starting a new feature.
+  → To resume:  say "continue"
+  → To archive: /dev archive-feature $existing_name
+  → To switch:  /dev switch-workspace $existing_name
+```
+
+Output this message and stop. Do not execute any further steps in this skill.
+
+## Step 3: Create workspace directories
 
 Run these commands:
 ```bash
@@ -30,7 +45,7 @@ mkdir -p .dev-framework/bugs
 mkdir -p .dev-framework/archived
 ```
 
-## Step 3: Write state.json
+## Step 4: Write state.json
 
 Create `.dev-framework/workspaces/$SLUG/state.json`:
 ```json
@@ -64,34 +79,33 @@ Create `.dev-framework/workspaces/$SLUG/state.json`:
 }
 ```
 
-## Step 4: Write context.md
+## Step 5: Write context.md
 
 Create `.dev-framework/workspaces/$SLUG/context.md` with the workspace name, type, creation date, current phase (po), and status (active).
 
-## Step 5: Create PO artifact template
+## Step 6: Create PO artifact template
 
 Create `.dev-framework/artifacts/$SLUG.po.md` with a requirements template including sections for: Problem Statement, User Stories, Functional Requirements, Non-Functional Requirements, Acceptance Criteria, Edge Cases, Dependencies.
 
 Update state.json to set `artifacts.po` to `artifacts/$SLUG.po.md`.
 
-## Step 6: Set as current workspace
+## Step 7: Set as current workspace
 
 Write the slug to `.dev-framework/current-workspace`:
 ```bash
 echo "$SLUG" > .dev-framework/current-workspace
 ```
 
-## Step 7: Create git branch and commit
+## Step 8: Ensure git repo and create branch
 
 ```bash
+git status 2>/dev/null || git init
 git checkout -b feature/$SLUG 2>/dev/null || git checkout feature/$SLUG
 git add .dev-framework/
 git commit -m "feat(framework): new workspace $SLUG"
 ```
 
-If git is not available or fails, skip silently.
-
-## Step 8: Confirm and begin PO phase
+## Step 9: Confirm and begin PO phase
 
 Output a brief summary:
 ```
