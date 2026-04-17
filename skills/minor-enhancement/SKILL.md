@@ -12,6 +12,21 @@ Start a minor enhancement workflow for: **$ARGUMENTS**
 Minor enhancement is an abbreviated workflow. PO, Architect, Tester, and Executor phases are skipped.
 Phase chain: **Developer → Reviewer → PO Approval → Complete**
 
+## Step 0: Check for existing active workspace
+
+Scan `.dev-framework/workspaces/*/state.json` for any workspace with `"status": "active"`.
+If one is found and its name is not `$SLUG`, output:
+
+```
+STOP: Active workspace found — $existing_name (phase: $phase).
+Finish or archive it before starting a new minor enhancement.
+  → To resume:  say "continue"
+  → To archive: /dev archive-feature $existing_name
+  → To switch:  /dev switch-workspace $existing_name
+```
+
+Do not proceed until the active workspace is resolved.
+
 ## Step 1: Create workspace slug
 
 Convert "$ARGUMENTS" to a slug: lowercase, hyphens for spaces, remove special characters.
@@ -57,10 +72,11 @@ Create `.dev-framework/artifacts/$SLUG.developer.md` with sections:
 - Before / After (show the diff inline)
 - Reason
 
-## Step 5: Set as current workspace and create branch
+## Step 5: Set as current workspace and ensure git repo
 
 ```bash
 echo "$SLUG" > .dev-framework/current-workspace
+git status 2>/dev/null || git init
 git checkout -b minor/$SLUG 2>/dev/null || git checkout minor/$SLUG
 git add .dev-framework/
 git commit -m "minor(framework): workspace $SLUG"

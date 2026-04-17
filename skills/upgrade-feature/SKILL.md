@@ -11,6 +11,21 @@ Start a major feature upgrade for: **$ARGUMENTS**
 
 This follows the same full workflow as new-feature (PO → Architect → Developer → Reviewer → Tester → Executor → PO Approval) but creates an isolated upgrade workspace so the original feature continues running in parallel.
 
+## Step 0: Check for existing active workspace
+
+Scan `.dev-framework/workspaces/*/state.json` for any workspace with `"status": "active"`.
+If one is found and its name is not `$SLUG`, output:
+
+```
+STOP: Active workspace found — $existing_name (phase: $phase).
+Finish or archive it before starting a new upgrade.
+  → To resume:  say "continue"
+  → To archive: /dev archive-feature $existing_name
+  → To switch:  /dev switch-workspace $existing_name
+```
+
+Do not proceed until the active workspace is resolved.
+
 ## Step 1: Create workspace slug
 
 Convert "$ARGUMENTS" to a slug: lowercase, hyphens for spaces, remove special characters. Append `-upgrade` if not already present.
@@ -61,10 +76,11 @@ Create `.dev-framework/workspaces/$SLUG/state.json`:
 
 Create `.dev-framework/artifacts/$SLUG.po.md` with sections: Upgrade Rationale, Migration Strategy (v1 → v2), User Stories, Functional Requirements, Non-Functional Requirements, Backwards Compatibility, Acceptance Criteria.
 
-## Step 5: Set as current workspace and create branch
+## Step 5: Set as current workspace and ensure git repo
 
 ```bash
 echo "$SLUG" > .dev-framework/current-workspace
+git status 2>/dev/null || git init
 git checkout -b upgrade/$SLUG 2>/dev/null || git checkout upgrade/$SLUG
 git add .dev-framework/
 git commit -m "feat(framework): upgrade workspace $SLUG"

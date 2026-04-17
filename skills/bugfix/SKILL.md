@@ -9,6 +9,21 @@ examples:
 
 Start a bug fix workflow for: **$ARGUMENTS**
 
+## Step 0: Check for existing active workspace
+
+Scan `.dev-framework/workspaces/*/state.json` for any workspace with `"status": "active"`.
+If one is found and its name is not `$SLUG`, output:
+
+```
+STOP: Active workspace found — $existing_name (phase: $phase).
+Finish or archive it before starting a new bugfix.
+  → To resume:  say "continue"
+  → To archive: /dev archive-feature $existing_name
+  → To switch:  /dev switch-workspace $existing_name
+```
+
+Do not proceed until the active workspace is resolved.
+
 ## Step 1: Look up bug details
 
 Check if `.dev-framework/bugs/bug-$ARGUMENTS.md` exists and read it.
@@ -34,6 +49,7 @@ Create `.dev-framework/workspaces/$SLUG/state.json`:
 {
   "name": "$SLUG",
   "type": "bugfix",
+  "workflowType": "bugfix",
   "bugId": "$ARGUMENTS",
   "created": "<current ISO timestamp>",
   "currentPhase": "developer",
@@ -61,10 +77,11 @@ Create `.dev-framework/workspaces/$SLUG/state.json`:
 
 Create `.dev-framework/artifacts/$SLUG.developer.md` with sections: Bug Summary, Root Cause Analysis, Fix Implementation, Files Changed, Testing Notes.
 
-## Step 6: Set as current workspace and create branch
+## Step 6: Set as current workspace and ensure git repo
 
 ```bash
 echo "$SLUG" > .dev-framework/current-workspace
+git status 2>/dev/null || git init
 git checkout -b bugfix/$SLUG 2>/dev/null || git checkout bugfix/$SLUG
 git add .dev-framework/
 git commit -m "fix(framework): bugfix workspace $SLUG"

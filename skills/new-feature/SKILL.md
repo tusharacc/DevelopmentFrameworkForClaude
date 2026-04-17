@@ -20,6 +20,21 @@ Convert the feature name "$ARGUMENTS" to a slug:
 
 Example: "User Authentication System" → `user-authentication-system`
 
+## Step 0: Check for existing active workspace
+
+Scan `.dev-framework/workspaces/*/state.json` for any workspace with `"status": "active"`.
+If one is found and its name is not `$SLUG`, output:
+
+```
+STOP: Active workspace found — $existing_name (phase: $phase).
+Finish or archive it before starting a new feature.
+  → To resume:  say "continue"
+  → To archive: /dev archive-feature $existing_name
+  → To switch:  /dev switch-workspace $existing_name
+```
+
+Do not proceed until the active workspace is resolved.
+
 ## Step 2: Create workspace directories
 
 Run these commands:
@@ -81,15 +96,14 @@ Write the slug to `.dev-framework/current-workspace`:
 echo "$SLUG" > .dev-framework/current-workspace
 ```
 
-## Step 7: Create git branch and commit
+## Step 7: Ensure git repo and create branch
 
 ```bash
+git status 2>/dev/null || git init
 git checkout -b feature/$SLUG 2>/dev/null || git checkout feature/$SLUG
 git add .dev-framework/
 git commit -m "feat(framework): new workspace $SLUG"
 ```
-
-If git is not available or fails, skip silently.
 
 ## Step 8: Confirm and begin PO phase
 
