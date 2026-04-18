@@ -39,6 +39,22 @@
       "status": "open",
       "created": "2026-04-17T00:00:00Z",
       "workspace": "git-mandatory-and-daily-skills"
+    },
+    {
+      "id": "BUG-006",
+      "title": "explore skill has no guidance for mid-conversation topic change",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-04-18T00:00:00Z",
+      "workspace": "explore-skill"
+    },
+    {
+      "id": "BUG-007",
+      "title": "explore skill has no nudge to wrap up when all coverage areas are complete",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-04-18T00:00:00Z",
+      "workspace": "explore-skill"
     }
   ]
 }
