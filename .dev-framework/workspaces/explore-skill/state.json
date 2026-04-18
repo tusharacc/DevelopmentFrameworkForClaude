@@ -3,13 +3,13 @@
   "type": "feature",
   "workflowType": "full",
   "created": "2026-04-18T00:00:00Z",
-  "currentPhase": "architect",
+  "currentPhase": "developer",
   "status": "active",
   "branch": "feature/explore-skill",
   "roles": {
     "po": { "status": "complete", "completed": "2026-04-18T00:30:00Z" },
-    "architect": { "status": "in-progress", "completed": null },
-    "developer": { "status": "pending", "completed": null },
+    "architect": { "status": "complete", "completed": "2026-04-18T01:00:00Z" },
+    "developer": { "status": "in-progress", "completed": null },
     "reviewer": { "status": "pending", "completed": null },
     "tester": { "status": "pending", "completed": null },
     "executor": { "status": "pending", "completed": null },
@@ -18,7 +18,7 @@
   "artifacts": {
     "po": "artifacts/explore-skill.po.md",
     "architect": "artifacts/explore-skill.architect.md",
-    "developer": null,
+    "developer": "artifacts/explore-skill.developer.md",
     "reviewer": null,
     "tester": null,
     "executor": null,
@@ -27,6 +27,8 @@
   "timelines": {
     "po_start": "2026-04-18T00:00:00Z",
     "po_complete": "2026-04-18T00:30:00Z",
-    "architect_start": "2026-04-18T00:30:00Z"
+    "architect_start": "2026-04-18T00:30:00Z",
+    "architect_complete": "2026-04-18T01:00:00Z",
+    "developer_start": "2026-04-18T01:00:00Z"
   }
 }
