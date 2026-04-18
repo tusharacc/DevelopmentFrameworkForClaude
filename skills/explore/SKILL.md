@@ -57,7 +57,7 @@ Continue looping until a completion signal is detected.
 After each developer response, check if it contains any of the following (case-insensitive):
 `done`, `that's enough`, `looks good`, `ready`, `wrap it up`, `wrap up`,
 `summarise`, `summarize`, `write it up`, `hand to po`, `handoff`, `hand off`,
-`finish`, `finished`, `stop`, `good enough`, `let's go`, `lets go`
+`finish`, `finished`, `stop exploring`, `good enough`, `let's go`, `lets go`
 
 When detected, respond:
 > "Got it — let me write up the brief."
@@ -85,7 +85,7 @@ $what_already_exists_that_is_relevant (codebase patterns, prior art, ecosystem)
 
 ## Proposed Approaches
 - **$approach_1**: $description — *trade-offs: $tradeoffs*
-- **$approach_2**: $description — *trade-offs: $tradeoffs* ← only if discussed
+- **$approach_2**: $description — *trade-offs: $tradeoffs*
 
 ## Constraints & Risks
 - $constraint_or_risk_1
@@ -101,6 +101,7 @@ $what_already_exists_that_is_relevant (codebase patterns, prior art, ecosystem)
 
 Rules:
 - Synthesise the conversation — do not transcribe it verbatim
+- Include the second approach entry only if a second approach was actually discussed; omit the line entirely otherwise
 - If a section was not covered, write `*(not explored)*` rather than omitting it
 - Suggested workflow type must be one of: `new-feature`, `bugfix`, `hotfix`, `minor-enhancement`, `upgrade`
 - Keep it under 60 lines total — PO should be able to read it in under 2 minutes
