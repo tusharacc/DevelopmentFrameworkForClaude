@@ -10,7 +10,7 @@
     },
     {
       "id": "BUG-002",
-      "title": "No maximum loop count for reviewer → developer review cycles",
+      "title": "No maximum loop count for reviewer \u2192 developer review cycles",
       "severity": "low",
       "status": "open",
       "created": "2026-04-11T00:00:00Z",
@@ -26,7 +26,7 @@
     },
     {
       "id": "BUG-004",
-      "title": "Step 0 stop instruction is passive — Claude may wait instead of stopping",
+      "title": "Step 0 stop instruction is passive \u2014 Claude may wait instead of stopping",
       "severity": "low",
       "status": "open",
       "created": "2026-04-17T00:00:00Z",
@@ -55,6 +55,14 @@
       "status": "open",
       "created": "2026-04-18T00:00:00Z",
       "workspace": "explore-skill"
+    },
+    {
+      "id": "BUG-008",
+      "title": "Phase-gate hook allowlist fails for absolute file paths",
+      "severity": "medium",
+      "status": "open",
+      "created": "2026-04-18T00:00:00Z",
+      "workspace": null
     }
   ]
 }
