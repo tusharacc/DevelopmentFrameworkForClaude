@@ -4,7 +4,7 @@
   "bugId": "BUG-001",
   "created": "2026-04-11T00:00:00Z",
   "currentPhase": "complete",
-  "status": "archived",
+  "status": "complete",
   "branch": "bugfix/bugfix-bug-001",
   "roles": {
     "developer": {
@@ -39,6 +39,5 @@
     "developer_start": "2026-04-11T00:00:00Z",
     "completed": "2026-04-19T00:00:00Z"
   },
-  "workflowType": "bugfix",
-  "archivedDate": "2026-04-22T00:00:00Z"
+  "workflowType": "bugfix"
 }

@@ -47,12 +47,12 @@ except:
 " 2>/dev/null)
 
 # Don't block writes to .dev-framework/ itself (artifacts, state, bugs)
-if echo "$FILE_PATH" | grep -q "^\.dev-framework/\|^\.dev-framework\\\\"; then
+if echo "$FILE_PATH" | grep -qE '\.dev-framework/'; then
   exit 0
 fi
 
 # Don't block writes to CLAUDE.md, hooks/, skills/, agents/ (framework files)
-if echo "$FILE_PATH" | grep -qE "^CLAUDE\.md$|^hooks/|^skills/|^agents/|^\.claude"; then
+if echo "$FILE_PATH" | grep -qE "CLAUDE\.md|hooks/|skills/|agents/|\.claude"; then
   exit 0
 fi
 

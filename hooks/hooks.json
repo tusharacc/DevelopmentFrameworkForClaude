@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash hooks/check-phase.sh"
+            "command": "bash /Users/tusharsaurabh/Documents/Projects/AI/DevelopmentFrameworkForClaude/hooks/check-phase.sh"
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash hooks/check-bash-phase.sh"
+            "command": "bash /Users/tusharsaurabh/Documents/Projects/AI/DevelopmentFrameworkForClaude/hooks/check-bash-phase.sh"
           }
         ]
       }
