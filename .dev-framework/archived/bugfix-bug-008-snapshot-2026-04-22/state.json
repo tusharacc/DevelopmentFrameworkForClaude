@@ -5,8 +5,7 @@
   "bugId": "BUG-008",
   "created": "2026-04-22T00:00:00Z",
   "currentPhase": "complete",
-  "status": "archived",
-  "archivedDate": "2026-04-22T00:00:00Z",
+  "status": "complete",
   "branch": "bugfix/bugfix-bug-008",
   "roles": {
     "developer":   { "status": "completed", "completed": "2026-04-22T00:00:00Z" },
