@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/tusharsaurabh/Documents/Projects/AI/DevelopmentFrameworkForClaude/hooks/check-phase.sh"
+            "command": "bash -c 'r=$(git rev-parse --show-toplevel 2>/dev/null); h=\"$r/hooks/check-phase.sh\"; [ -f \"$h\" ] && bash \"$h\" || exit 0'"
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/tusharsaurabh/Documents/Projects/AI/DevelopmentFrameworkForClaude/hooks/check-bash-phase.sh"
+            "command": "bash -c 'r=$(git rev-parse --show-toplevel 2>/dev/null); h=\"$r/hooks/check-bash-phase.sh\"; [ -f \"$h\" ] && bash \"$h\" || exit 0'"
           }
         ]
       }

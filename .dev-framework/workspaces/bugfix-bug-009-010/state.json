@@ -1,0 +1,27 @@
+{
+  "name": "bugfix-bug-009-010",
+  "type": "bugfix",
+  "workflowType": "bugfix",
+  "bugId": "BUG-009, BUG-010",
+  "created": "2026-04-22T00:00:00Z",
+  "currentPhase": "developer",
+  "status": "active",
+  "branch": "bugfix/bugfix-bug-009-010",
+  "roles": {
+    "developer":   { "status": "in-progress", "completed": null },
+    "reviewer":    { "status": "pending", "completed": null },
+    "tester":      { "status": "pending", "completed": null },
+    "executor":    { "status": "pending", "completed": null },
+    "po-approval": { "status": "pending", "completed": null }
+  },
+  "artifacts": {
+    "developer":   "artifacts/bugfix-bug-009-010.developer.md",
+    "reviewer":    null,
+    "tester":      null,
+    "executor":    null,
+    "po-approval": null
+  },
+  "timelines": {
+    "developer_start": "2026-04-22T00:00:00Z"
+  }
+}
