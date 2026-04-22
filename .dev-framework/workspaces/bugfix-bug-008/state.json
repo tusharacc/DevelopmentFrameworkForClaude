@@ -4,24 +4,28 @@
   "workflowType": "bugfix",
   "bugId": "BUG-008",
   "created": "2026-04-22T00:00:00Z",
-  "currentPhase": "developer",
+  "currentPhase": "tester",
   "status": "active",
   "branch": "bugfix/bugfix-bug-008",
   "roles": {
-    "developer":   { "status": "in-progress", "completed": null },
-    "reviewer":    { "status": "pending", "completed": null },
-    "tester":      { "status": "pending", "completed": null },
+    "developer":   { "status": "completed", "completed": "2026-04-22T00:00:00Z" },
+    "reviewer":    { "status": "completed", "completed": "2026-04-22T00:00:00Z" },
+    "tester":      { "status": "in-progress", "completed": null },
     "executor":    { "status": "pending", "completed": null },
     "po-approval": { "status": "pending", "completed": null }
   },
   "artifacts": {
     "developer":   "artifacts/bugfix-bug-008.developer.md",
-    "reviewer":    null,
-    "tester":      null,
+    "reviewer":    "artifacts/bugfix-bug-008.reviewer.md",
+    "tester":      "artifacts/bugfix-bug-008.tester.md",
     "executor":    null,
     "po-approval": null
   },
   "timelines": {
-    "developer_start": "2026-04-22T00:00:00Z"
+    "developer_start":    "2026-04-22T00:00:00Z",
+    "developer_complete": "2026-04-22T00:00:00Z",
+    "reviewer_start":     "2026-04-22T00:00:00Z",
+    "reviewer_complete":  "2026-04-22T00:00:00Z",
+    "tester_start":       "2026-04-22T00:00:00Z"
   }
 }

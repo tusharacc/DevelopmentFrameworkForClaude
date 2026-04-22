@@ -60,9 +60,25 @@
       "id": "BUG-008",
       "title": "Phase-gate hook allowlist fails for absolute file paths",
       "severity": "medium",
-      "status": "open",
+      "status": "closed",
       "created": "2026-04-18T00:00:00Z",
-      "workspace": null
+      "workspace": "bugfix-bug-008"
+    },
+    {
+      "id": "BUG-009",
+      "title": "hooks/hooks.json absolute path is machine-specific",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-04-22T00:00:00Z",
+      "workspace": "bugfix-bug-008"
+    },
+    {
+      "id": "BUG-010",
+      "title": "check-phase.sh allowlist too broad — paths containing hooks/ or skills/ bypass phase gate",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-04-22T00:00:00Z",
+      "workspace": "bugfix-bug-008"
     }
   ]
 }
