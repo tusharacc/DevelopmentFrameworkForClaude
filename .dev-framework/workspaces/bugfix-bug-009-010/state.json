@@ -4,24 +4,49 @@
   "workflowType": "bugfix",
   "bugId": "BUG-009, BUG-010",
   "created": "2026-04-22T00:00:00Z",
-  "currentPhase": "developer",
-  "status": "active",
+  "currentPhase": "complete",
+  "status": "complete",
   "branch": "bugfix/bugfix-bug-009-010",
   "roles": {
-    "developer":   { "status": "in-progress", "completed": null },
-    "reviewer":    { "status": "pending", "completed": null },
-    "tester":      { "status": "pending", "completed": null },
-    "executor":    { "status": "pending", "completed": null },
-    "po-approval": { "status": "pending", "completed": null }
+    "developer": {
+      "status": "completed",
+      "completed": "2026-04-22T00:00:00Z"
+    },
+    "reviewer": {
+      "status": "completed",
+      "completed": "2026-04-22T00:00:00Z"
+    },
+    "tester": {
+      "status": "completed",
+      "completed": "2026-04-22T00:00:00Z"
+    },
+    "executor": {
+      "status": "completed",
+      "completed": "2026-04-22T00:00:00Z"
+    },
+    "po-approval": {
+      "status": "completed",
+      "completed": "2026-04-22T00:00:00Z"
+    }
   },
   "artifacts": {
-    "developer":   "artifacts/bugfix-bug-009-010.developer.md",
-    "reviewer":    null,
-    "tester":      null,
-    "executor":    null,
-    "po-approval": null
+    "developer": "artifacts/bugfix-bug-009-010.developer.md",
+    "reviewer": "artifacts/bugfix-bug-009-010.reviewer.md",
+    "tester": "artifacts/bugfix-bug-009-010.tester.md",
+    "executor": "artifacts/bugfix-bug-009-010.executor.md",
+    "po-approval": "artifacts/bugfix-bug-009-010.po-approval.md"
   },
   "timelines": {
-    "developer_start": "2026-04-22T00:00:00Z"
+    "developer_start": "2026-04-22T00:00:00Z",
+    "developer_complete": "2026-04-22T00:00:00Z",
+    "reviewer_start": "2026-04-22T00:00:00Z",
+    "reviewer_complete": "2026-04-22T00:00:00Z",
+    "tester_start": "2026-04-22T00:00:00Z",
+    "tester_complete": "2026-04-22T00:00:00Z",
+    "executor_start": "2026-04-22T00:00:00Z",
+    "executor_complete": "2026-04-22T00:00:00Z",
+    "po-approval_start": "2026-04-22T00:00:00Z",
+    "po-approval_complete": "2026-04-22T00:00:00Z",
+    "completed": "2026-04-22T00:00:00Z"
   }
 }
