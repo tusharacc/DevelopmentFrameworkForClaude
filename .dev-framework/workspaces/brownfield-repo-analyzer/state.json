@@ -1,0 +1,29 @@
+{
+  "name": "brownfield-repo-analyzer",
+  "type": "feature",
+  "workflowType": "full",
+  "created": "2026-04-25T00:00:00.000Z",
+  "currentPhase": "complete",
+  "status": "archived",
+  "archivedDate": "2026-04-26T00:00:00.000Z",
+  "branch": "feature/brownfield-repo-analyzer",
+  "roles": {
+    "po": { "status": "completed", "completed": "2026-04-25T00:00:00.000Z" },
+    "architect": { "status": "completed", "completed": "2026-04-26T00:00:00.000Z" },
+    "developer": { "status": "completed", "completed": "2026-04-26T00:00:00.000Z" },
+    "reviewer": { "status": "completed", "completed": "2026-04-26T00:00:00.000Z" },
+    "tester": { "status": "completed", "completed": "2026-04-26T00:00:00.000Z" },
+    "executor": { "status": "completed", "completed": "2026-04-26T00:00:00.000Z" },
+    "po-approval": { "status": "completed", "completed": "2026-04-26T00:00:00.000Z" }
+  },
+  "artifacts": {
+    "po": "artifacts/brownfield-repo-analyzer.po.md",
+    "architect": "artifacts/brownfield-repo-analyzer.architect.md",
+    "developer": "artifacts/brownfield-repo-analyzer.developer.md",
+    "reviewer": "artifacts/brownfield-repo-analyzer.reviewer.md",
+    "tester": "artifacts/brownfield-repo-analyzer.tester.md",
+    "executor": "artifacts/brownfield-repo-analyzer.executor.md",
+    "po-approval": "artifacts/brownfield-repo-analyzer.po-approval.md"
+  },
+  "timelines": {}
+}

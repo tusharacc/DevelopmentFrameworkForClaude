@@ -3,32 +3,22 @@
 # Called before Write/Edit tool use. Blocks file edits outside the developer phase.
 # Exit 0 = allow. Exit 2 = block with message.
 
-FRAMEWORK_DIR=".dev-framework"
+# Self-locate: resolve project root from this script's own path — no hardcoded paths
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+FRAMEWORK_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+FRAMEWORK_DIR="$FRAMEWORK_ROOT/.dev-framework"
 CURRENT_WS_FILE="$FRAMEWORK_DIR/current-workspace"
 
-# No framework directory — not initialised yet, allow (CLAUDE.md handles conversationally)
-if [ ! -d "$FRAMEWORK_DIR" ]; then
-  exit 0
-fi
-
-# No current workspace — allow (CLAUDE.md handles conversationally)
-if [ ! -f "$CURRENT_WS_FILE" ]; then
-  exit 0
-fi
+[ ! -d "$FRAMEWORK_DIR" ] || [ ! -f "$CURRENT_WS_FILE" ] && exit 0
 
 SLUG=$(tr -d '[:space:]' < "$CURRENT_WS_FILE")
-if [ -z "$SLUG" ]; then
-  exit 0
-fi
+[ -z "$SLUG" ] && exit 0
 
 STATE_FILE="$FRAMEWORK_DIR/workspaces/$SLUG/state.json"
-if [ ! -f "$STATE_FILE" ]; then
-  exit 0
-fi
+[ ! -f "$STATE_FILE" ] && exit 0
 
-# Extract currentPhase from state.json (no jq dependency)
 CURRENT_PHASE=$(python3 -c "
-import json, sys
+import json
 try:
     data = json.load(open('$STATE_FILE'))
     print(data.get('currentPhase', ''))
@@ -36,7 +26,6 @@ except:
     print('')
 " 2>/dev/null)
 
-# Extract file_path from tool input (read stdin directly in python — never interpolate JSON into shell strings)
 FILE_PATH=$(python3 -c "
 import json, sys
 try:
@@ -46,22 +35,26 @@ except:
     print('')
 " 2>/dev/null)
 
-# Don't block writes to .dev-framework/ itself (artifacts, state, bugs)
-if echo "$FILE_PATH" | grep -qE '\.dev-framework/'; then
-  exit 0
-fi
-
-# Don't block writes to CLAUDE.md, hooks/, skills/, agents/ (framework files)
-if echo "$FILE_PATH" | grep -qE "CLAUDE\.md|hooks/|skills/|agents/|\.claude"; then
-  exit 0
-fi
+# Allow writes to framework-owned directories — exact prefix match against absolute root
+# This avoids false positives from paths like /src/cool-hooks/ or /my-skills/
+for prefix in \
+    "$FRAMEWORK_ROOT/.dev-framework/" \
+    "$FRAMEWORK_ROOT/hooks/" \
+    "$FRAMEWORK_ROOT/skills/" \
+    "$FRAMEWORK_ROOT/agents/" \
+    "$FRAMEWORK_ROOT/.claude/"; do
+    case "$FILE_PATH" in
+        "$prefix"*) exit 0 ;;
+    esac
+done
+[ "$FILE_PATH" = "$FRAMEWORK_ROOT/CLAUDE.md" ] && exit 0
 
 # Block source file edits outside developer phase
 if [ "$CURRENT_PHASE" != "developer" ] && [ -n "$CURRENT_PHASE" ]; then
-  echo "[dev-framework] BLOCKED: File edits are only allowed in the developer phase."
-  echo "Current phase: $CURRENT_PHASE | Workspace: $SLUG"
-  echo "Complete the $CURRENT_PHASE phase and run hand-off to reach the developer phase."
-  exit 2
+    echo "[dev-framework] BLOCKED: File edits are only allowed in the developer phase."
+    echo "Current phase: $CURRENT_PHASE | Workspace: $SLUG"
+    echo "Complete the $CURRENT_PHASE phase and run hand-off to reach the developer phase."
+    exit 2
 fi
 
 exit 0
