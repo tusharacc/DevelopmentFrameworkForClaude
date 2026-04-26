@@ -8,7 +8,8 @@ Implemented the `/dev-framework:init-brownfield` skill as a single self-containe
 
 | File | Action | Description |
 |---|---|---|
-| `skills/init-brownfield/SKILL.md` | Created | Complete 272-line skill prompt implementing all six phases |
+| `skills/init-brownfield/SKILL.md` | Created | Complete skill prompt implementing all six phases |
+| `skills/init-brownfield/SKILL.md` | Updated | Step 2a: `maxdepth 2→3` to detect monorepo sub-packages; Step 5 Case B: explicit no/cancel abort path |
 
 ## Implementation Notes
 

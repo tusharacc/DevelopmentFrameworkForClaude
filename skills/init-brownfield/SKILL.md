@@ -38,7 +38,7 @@ Run each of the following bash commands and record the output. Do not skip a com
 
 **2a. Stack config files**
 ```bash
-find . -maxdepth 2 \( \
+find . -maxdepth 3 \( \
   -name "package.json" -o -name "go.mod" -o -name "pyproject.toml" \
   -o -name "Cargo.toml" -o -name "Gemfile" -o -name "pom.xml" -o -name "*.csproj" \
   \) -not -path "*/node_modules/*" -not -path "*/.git/*" -not -path "*/vendor/*" \
@@ -246,7 +246,7 @@ Then go to Step 6. Do not write the file.
 Otherwise, ask:
 > "Type **yes** to apply these changes, or describe corrections."
 
-Wait for the user's response. If "yes", apply changes. If corrections given, apply them, confirm briefly, then write.
+Wait for the user's response. If "yes", apply changes. If corrections given, apply them, confirm briefly, then write. If the user says "no", "cancel", "stop", or similar — abort without writing and output: "Write cancelled. CLAUDE.md was not modified." Then go to Step 6.
 
 When writing:
 - Merge changes into the existing file structure where possible.
