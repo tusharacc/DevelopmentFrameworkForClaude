@@ -46,3 +46,16 @@ Many READMEs open with badge/shield image lines before prose. Step 2h's "first n
 ## Recommendation
 
 **Advance to Tester.** All issues are low severity and do not affect correctness of CLAUDE.md writes or safety of the approval gates. The five bugs are filed for a future fix cycle.
+
+---
+
+## Re-review (post-executor fix cycle)
+
+**Changes reviewed:** Two targeted edits to `skills/init-brownfield/SKILL.md`.
+
+| Change | Assessment |
+|---|---|
+| Step 2a: `maxdepth 2 → maxdepth 3` for stack config detection | Correct and precisely scoped. Directory structure scan (`2b`) unchanged at depth 2. Exclusions (`node_modules`, `.git`, `vendor`) still apply. |
+| Step 5 Case B: explicit no/cancel abort path | Correct. Abort message is clear; redirect to Step 6 ensures graceful exit. |
+
+**No new issues.** Advance to executor re-run.
