@@ -4,8 +4,7 @@
   "workflowType": "full",
   "created": "2026-04-25T00:00:00.000Z",
   "currentPhase": "complete",
-  "status": "archived",
-  "archivedDate": "2026-04-26T00:00:00.000Z",
+  "status": "complete",
   "branch": "feature/brownfield-repo-analyzer",
   "roles": {
     "po": { "status": "completed", "completed": "2026-04-25T00:00:00.000Z" },
