@@ -3,7 +3,7 @@
   "type": "feature",
   "workflowType": "full",
   "created": "2026-04-25T00:00:00.000Z",
-  "currentPhase": "executor",
+  "currentPhase": "po-approval",
   "status": "active",
   "branch": "feature/brownfield-repo-analyzer",
   "roles": {
@@ -12,8 +12,8 @@
     "developer": { "status": "completed", "completed": "2026-04-26T00:00:00.000Z" },
     "reviewer": { "status": "completed", "completed": "2026-04-26T00:00:00.000Z" },
     "tester": { "status": "completed", "completed": "2026-04-26T00:00:00.000Z" },
-    "executor": { "status": "in-progress", "completed": null },
-    "po-approval": { "status": "pending", "completed": null }
+    "executor": { "status": "completed", "completed": "2026-04-26T00:00:00.000Z" },
+    "po-approval": { "status": "in-progress", "completed": null }
   },
   "artifacts": {
     "po": "artifacts/brownfield-repo-analyzer.po.md",
@@ -22,7 +22,7 @@
     "reviewer": "artifacts/brownfield-repo-analyzer.reviewer.md",
     "tester": "artifacts/brownfield-repo-analyzer.tester.md",
     "executor": "artifacts/brownfield-repo-analyzer.executor.md",
-    "po-approval": null
+    "po-approval": "artifacts/brownfield-repo-analyzer.po-approval.md"
   },
   "timelines": {}
 }

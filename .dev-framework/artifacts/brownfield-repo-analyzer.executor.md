@@ -43,3 +43,14 @@ The Case B approval prompt says "Type **yes** to apply these changes, or describ
 ## Recommendation
 
 **Return to Developer.** TC-05 is a critical failure: the monorepo detection feature does not work for standard `packages/*/package.json` layouts. Fix: change `maxdepth 2` to `maxdepth 3` in Step 2a only. TC-12 is a low-priority concern that can be fixed in the same pass.
+
+---
+
+## Re-run Results (post-fix)
+
+| TC | Result | Evidence |
+|---|---|---|
+| TC-05 | **PASS** | `find -maxdepth 3` detects both `./package.json` and `./packages/core/package.json` (count=2 → ambiguity prompt fires) |
+| TC-12 | **PASS** | Explicit cancel path confirmed in skill: "If the user says 'no', 'cancel', 'stop', or similar — abort without writing" |
+
+**All 13 critical tests now PASS. Advance to PO Approval.**
