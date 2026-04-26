@@ -79,6 +79,46 @@
       "status": "closed",
       "created": "2026-04-22T00:00:00Z",
       "workspace": "bugfix-bug-009-010"
+    },
+    {
+      "id": "BUG-011",
+      "title": "find -o without parentheses in Step 2f CI detection ignores -maxdepth for alternatives",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-04-26T00:00:00Z",
+      "workspace": "brownfield-repo-analyzer"
+    },
+    {
+      "id": "BUG-012",
+      "title": "Library sort heuristic shortest-name-first may omit important dependencies",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-04-26T00:00:00Z",
+      "workspace": "brownfield-repo-analyzer"
+    },
+    {
+      "id": "BUG-013",
+      "title": "Commands template placeholder behaviour ambiguous when value not detected",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-04-26T00:00:00Z",
+      "workspace": "brownfield-repo-analyzer"
+    },
+    {
+      "id": "BUG-014",
+      "title": "setup.cfg is a false positive indicator for pytest test runner",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-04-26T00:00:00Z",
+      "workspace": "brownfield-repo-analyzer"
+    },
+    {
+      "id": "BUG-015",
+      "title": "README first paragraph capture may pull badge/shield lines as Project Overview",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-04-26T00:00:00Z",
+      "workspace": "brownfield-repo-analyzer"
     }
   ]
 }
