@@ -3,15 +3,15 @@
   "type": "feature",
   "workflowType": "full",
   "created": "2026-05-02T00:00:00.000Z",
-  "currentPhase": "developer",
+  "currentPhase": "tester",
   "status": "active",
   "branch": "feature/code-quality-agents",
   "roles": {
     "po": { "status": "completed", "completed": "2026-05-02T00:00:00.000Z" },
     "architect": { "status": "completed", "completed": "2026-05-02T00:00:00.000Z" },
-    "developer": { "status": "in-progress", "completed": null },
-    "reviewer": { "status": "pending", "completed": null },
-    "tester": { "status": "pending", "completed": null },
+    "developer": { "status": "completed", "completed": "2026-05-02T00:00:00.000Z" },
+    "reviewer": { "status": "completed", "completed": "2026-05-02T00:00:00.000Z" },
+    "tester": { "status": "in-progress", "completed": null },
     "executor": { "status": "pending", "completed": null },
     "po-approval": { "status": "pending", "completed": null }
   },
@@ -20,7 +20,7 @@
     "architect": "artifacts/code-quality-agents.architect.md",
     "developer": "artifacts/code-quality-agents.developer.md",
     "reviewer": "artifacts/code-quality-agents.reviewer.md",
-    "tester": null,
+    "tester": "artifacts/code-quality-agents.tester.md",
     "executor": null,
     "po-approval": null
   },
@@ -31,6 +31,10 @@
     "developer_start": "2026-05-02T00:00:00.000Z",
     "developer_complete": "2026-05-02T00:00:00.000Z",
     "reviewer_start": "2026-05-02T00:00:00.000Z",
-    "developer_start_2": "2026-05-02T00:00:00.000Z"
+    "developer_start_2": "2026-05-02T00:00:00.000Z",
+    "developer_complete_2": "2026-05-02T00:00:00.000Z",
+    "reviewer_start_2": "2026-05-02T00:00:00.000Z",
+    "reviewer_complete": "2026-05-02T00:00:00.000Z",
+    "tester_start": "2026-05-02T00:00:00.000Z"
   }
 }

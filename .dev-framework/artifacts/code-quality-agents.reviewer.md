@@ -118,11 +118,11 @@ Patterns `AWS_SECRET_ACCESS_KEY`, `GCP_SERVICE_ACCOUNT_KEY`, `AZURE_CLIENT_SECRE
 
 ## Approval Status
 
-**REJECTED — returning to Developer**
+**APPROVED — re-check passed**
 
-Required fixes before re-review:
-1. HIGH-01: Replace `grep -P`/`-oP` with `grep -E`/`-oE` in `pre-commit.sh`
-2. HIGH-02: Replace `declare -A` with parallel indexed arrays in `pre-commit.sh`
-3. MEDIUM-01: Fix state.json update instruction in `code-quality.md` Step 4
+All three blocking issues resolved and verified:
+1. HIGH-01 ✓ — `grep -P`/`-oP` replaced with `grep -E`/`-oE` throughout `pre-commit.sh`
+2. HIGH-02 ✓ — `declare -A` replaced with parallel indexed arrays `PATTERN_NAMES`/`PATTERN_REGEXES` (Bash 3.2+ compatible)
+3. MEDIUM-01 ✓ — `code-quality.md` Step 4 now instructs merging into existing `artifacts` object, not replacing it
 
-LOW findings filed as bugs (see `.dev-framework/bugs/`).
+LOW findings filed as BUG-016 through BUG-019 (not blocking). Advancing to Tester.
