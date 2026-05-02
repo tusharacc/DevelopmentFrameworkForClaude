@@ -4,8 +4,7 @@
   "workflowType": "full",
   "created": "2026-05-02T00:00:00.000Z",
   "currentPhase": "complete",
-  "status": "archived",
-  "archivedDate": "2026-05-02T00:00:00.000Z",
+  "status": "complete",
   "branch": "feature/code-quality-agents",
   "roles": {
     "po": { "status": "completed", "completed": "2026-05-02T00:00:00.000Z" },
