@@ -119,6 +119,38 @@
       "status": "open",
       "created": "2026-04-26T00:00:00Z",
       "workspace": "brownfield-repo-analyzer"
+    },
+    {
+      "id": "BUG-016",
+      "title": "pre-commit hook: build_allowlist called per-line (O(n²) file reads)",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-05-02T00:00:00Z",
+      "workspace": "code-quality-agents"
+    },
+    {
+      "id": "BUG-017",
+      "title": "simplify.md edge case typo: .TS should be .ts",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-05-02T00:00:00Z",
+      "workspace": "code-quality-agents"
+    },
+    {
+      "id": "BUG-018",
+      "title": "No default .code-quality-ignore for rules/hooks files (self-referential false positives)",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-05-02T00:00:00Z",
+      "workspace": "code-quality-agents"
+    },
+    {
+      "id": "BUG-019",
+      "title": "4 patterns in secret-patterns.md absent from pre-commit hook PATTERNS array",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-05-02T00:00:00Z",
+      "workspace": "code-quality-agents"
     }
   ]
 }

@@ -19,10 +19,18 @@
     "po": "artifacts/code-quality-agents.po.md",
     "architect": "artifacts/code-quality-agents.architect.md",
     "developer": "artifacts/code-quality-agents.developer.md",
-    "reviewer": null,
+    "reviewer": "artifacts/code-quality-agents.reviewer.md",
     "tester": null,
     "executor": null,
     "po-approval": null
   },
-  "timelines": {}
+  "timelines": {
+    "po_complete": "2026-05-02T00:00:00.000Z",
+    "architect_start": "2026-05-02T00:00:00.000Z",
+    "architect_complete": "2026-05-02T00:00:00.000Z",
+    "developer_start": "2026-05-02T00:00:00.000Z",
+    "developer_complete": "2026-05-02T00:00:00.000Z",
+    "reviewer_start": "2026-05-02T00:00:00.000Z",
+    "developer_start_2": "2026-05-02T00:00:00.000Z"
+  }
 }
