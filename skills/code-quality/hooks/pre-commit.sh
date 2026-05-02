@@ -109,8 +109,8 @@ while IFS= read -r line; do
     while [[ $local_idx -lt ${#PATTERN_NAMES[@]} ]]; do
       PATTERN_NAME="${PATTERN_NAMES[$local_idx]}"
       REGEX="${PATTERN_REGEXES[$local_idx]}"
-      if echo "$CONTENT" | grep -qE "$REGEX" 2>/dev/null; then
-        MATCH=$(echo "$CONTENT" | grep -oE "$REGEX" | head -1)
+      if echo "$CONTENT" | grep -qE -- "$REGEX" 2>/dev/null; then
+        MATCH=$(echo "$CONTENT" | grep -oE -- "$REGEX" | head -1)
         REDACTED="${MATCH:0:4}****"
         echo ""
         echo "  SECRET DETECTED"
