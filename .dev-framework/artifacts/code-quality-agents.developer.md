@@ -25,6 +25,8 @@ Python strict typing constraint applies to any Python code introduced in future 
 |---|---|
 | `skills/hand-off/SKILL.md` | Added code-quality invocation to reviewer phase entry; added secure-coding checklist to developer phase entry |
 | `skills/observe/SKILL.md` | Added code-quality observe-mode invocation as a check step |
+| `skills/code-quality/hooks/pre-commit.sh` | **Re-run fix:** replaced `declare -A` (bash 4+ only) with parallel indexed arrays (bash 3.2+ compatible); replaced `grep -P`/`-oP` with `grep -E`/`-oE` (portable across BSD and GNU grep); cached allowlist before main loop |
+| `skills/code-quality/code-quality.md` | **Re-run fix:** corrected state.json update instruction to merge new key into existing `artifacts` object, not replace it |
 
 ## Test Coverage
 

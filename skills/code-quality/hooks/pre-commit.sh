@@ -4,60 +4,69 @@
 # To suppress a known false positive, add an entry to .code-quality-ignore
 # with a justification comment on the preceding line.
 # Note: git commit --no-verify bypasses this hook. Complement with CI enforcement.
+# Compatible with Bash 3.2+ (macOS default) and GNU/BSD grep.
 
 set -euo pipefail
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 IGNORE_FILE="$REPO_ROOT/.code-quality-ignore"
 
-# Patterns to detect (name:regex pairs, tab-separated)
-declare -A PATTERNS=(
-  [AWS_ACCESS_KEY_ID]="AKIA[0-9A-Z]{16}"
-  [PRIVATE_KEY_PEM]="-----BEGIN (RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----"
-  [BEARER_TOKEN]="[Bb]earer[[:space:]]+[A-Za-z0-9_.-]{20,}"
-  [JWT_TOKEN]="eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}"
-  [GITHUB_PAT]="gh[pousr]_[A-Za-z0-9]{36,}"
-  [GITLAB_PAT]="glpat-[A-Za-z0-9_-]{20,}"
-  [SLACK_TOKEN]="xox[baprs]-[0-9A-Za-z-]{10,}"
-  [STRIPE_KEY]="sk_(live|test)_[A-Za-z0-9]{24,}"
-  [DB_CONN_WITH_CREDS]="(postgres|mysql|mongodb|redis)://[^:]+:[^@]+@"
-  [HARDCODED_PASSWORD]="(password|passwd|pwd)[[:space:]]*[=:][[:space:]]*[\"'][^\"']{8,}[\"']"
+# Parallel indexed arrays — compatible with Bash 3.2+ (no associative arrays)
+PATTERN_NAMES=(
+  AWS_ACCESS_KEY_ID
+  PRIVATE_KEY_PEM
+  BEARER_TOKEN
+  JWT_TOKEN
+  GITHUB_PAT
+  GITLAB_PAT
+  SLACK_TOKEN
+  STRIPE_KEY
+  DB_CONN_WITH_CREDS
+  HARDCODED_PASSWORD
+)
+PATTERN_REGEXES=(
+  "AKIA[0-9A-Z]{16}"
+  "-----BEGIN (RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----"
+  "[Bb]earer[[:space:]]+[A-Za-z0-9_.\\-]{20,}"
+  "eyJ[A-Za-z0-9_\\-]{10,}\\.[A-Za-z0-9_\\-]{10,}\\.[A-Za-z0-9_\\-]{10,}"
+  "gh[pousr]_[A-Za-z0-9]{36,}"
+  "glpat-[A-Za-z0-9_\\-]{20,}"
+  "xox[baprs]-[0-9A-Za-z\\-]{10,}"
+  "sk_(live|test)_[A-Za-z0-9]{24,}"
+  "(postgres|mysql|mongodb|redis)://[^:]+:[^@]+@"
+  "(password|passwd|pwd)[[:space:]]*[=:][[:space:]]*[\"'][^\"']{8,}[\"']"
 )
 
-# Build allowlist from .code-quality-ignore
-build_allowlist() {
-  local -a allowed=()
-  if [[ -f "$IGNORE_FILE" ]]; then
-    local prev_line=""
-    while IFS= read -r line || [[ -n "$line" ]]; do
-      # Skip empty lines and comment-only lines
-      [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && { prev_line="$line"; continue; }
-      # Entry is valid only if the previous non-empty line was a comment (justification)
-      if [[ "$prev_line" =~ ^[[:space:]]*# ]]; then
-        allowed+=("$line")
-      fi
-      prev_line="$line"
-    done < "$IGNORE_FILE"
-  fi
-  printf '%s\n' "${allowed[@]}"
-}
+# Build allowlist once — cache in indexed array to avoid repeated file reads
+ALLOWLIST=()
+if [[ -f "$IGNORE_FILE" ]]; then
+  prev_line=""
+  while IFS= read -r raw_line || [[ -n "$raw_line" ]]; do
+    [[ -z "$raw_line" || "$raw_line" =~ ^[[:space:]]*# ]] && { prev_line="$raw_line"; continue; }
+    if [[ "$prev_line" =~ ^[[:space:]]*# ]]; then
+      ALLOWLIST+=("$raw_line")
+    fi
+    prev_line="$raw_line"
+  done < "$IGNORE_FILE"
+fi
 
 is_allowlisted() {
   local file="$1"
-  while IFS= read -r pattern; do
-    # Simple glob match using bash
+  local pattern
+  for pattern in "${ALLOWLIST[@]+"${ALLOWLIST[@]}"}"; do
     # shellcheck disable=SC2053
     if [[ "$file" == $pattern ]]; then
       return 0
     fi
-  done < <(build_allowlist)
+  done
   return 1
 }
 
 FINDINGS=0
-CHECKED_FILES=0
+CURRENT_FILE=""
+CURRENT_LINE=0
 
-# Analyse staged diff
+# Analyse staged diff — uses grep -E (POSIX ERE, portable across GNU and BSD grep)
 while IFS= read -r line; do
   # Track current file from diff headers
   if [[ "$line" =~ ^\+\+\+[[:space:]]b/(.+)$ ]]; then
@@ -73,11 +82,12 @@ while IFS= read -r line; do
     continue
   fi
 
-  # Count lines in context and removed lines (not added)
-  if [[ "$line" =~ ^[\ -] ]]; then
-    [[ "$line" =~ ^[\ ] ]] && (( CURRENT_LINE++ )) || true
+  # Context lines advance the counter; removed lines do not
+  if [[ "$line" =~ ^[[:space:]] ]]; then
+    (( CURRENT_LINE++ )) || true
     continue
   fi
+  [[ "$line" =~ ^- ]] && continue
 
   # Process added lines only
   if [[ "$line" =~ ^\+ ]]; then
@@ -90,15 +100,17 @@ while IFS= read -r line; do
     fi
 
     # Skip allowlisted files
-    if [[ -n "${CURRENT_FILE:-}" ]] && is_allowlisted "$CURRENT_FILE"; then
+    if [[ -n "$CURRENT_FILE" ]] && is_allowlisted "$CURRENT_FILE"; then
       continue
     fi
 
-    # Apply each pattern
-    for PATTERN_NAME in "${!PATTERNS[@]}"; do
-      REGEX="${PATTERNS[$PATTERN_NAME]}"
-      if echo "$CONTENT" | grep -qP "$REGEX" 2>/dev/null; then
-        MATCH=$(echo "$CONTENT" | grep -oP "$REGEX" | head -1)
+    # Apply each pattern using grep -E (portable: works on both GNU and BSD grep)
+    local_idx=0
+    while [[ $local_idx -lt ${#PATTERN_NAMES[@]} ]]; do
+      PATTERN_NAME="${PATTERN_NAMES[$local_idx]}"
+      REGEX="${PATTERN_REGEXES[$local_idx]}"
+      if echo "$CONTENT" | grep -qE "$REGEX" 2>/dev/null; then
+        MATCH=$(echo "$CONTENT" | grep -oE "$REGEX" | head -1)
         REDACTED="${MATCH:0:4}****"
         echo ""
         echo "  SECRET DETECTED"
@@ -109,9 +121,8 @@ while IFS= read -r line; do
         echo "  Action:   BLOCKED — remove secret, use environment variable or secrets manager"
         (( FINDINGS++ )) || true
       fi
+      (( local_idx++ )) || true
     done
-
-    (( CHECKED_FILES++ )) || true
   fi
 done < <(git diff --cached --unified=0)
 

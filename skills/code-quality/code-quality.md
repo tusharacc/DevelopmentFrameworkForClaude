@@ -123,9 +123,10 @@ Recommended fix: ...]
 [If none: "No secrets detected."]
 ```
 
-Update `state.json` to record the report path:
+Update `state.json` to record the report path by adding a new key to the existing `artifacts` object — do NOT replace the object:
 ```json
-"artifacts": { "code-quality-report": "artifacts/$SLUG.code-quality-report.md" }
+// Merge into existing artifacts — preserve all other keys (po, architect, developer, etc.)
+"artifacts.code-quality-report": "artifacts/$SLUG.code-quality-report.md"
 ```
 
 ---
