@@ -104,8 +104,8 @@ Starting $nextPhase phase...
 
 Then immediately act as the appropriate agent for `$nextPhase`:
 - `architect` → Act as Architect: design the technical solution based on the PO artifact
-- `developer` → Act as Developer: implement based on architect and PO artifacts; if returning from reviewer, address all high/medium comments from the reviewer artifact
-- `reviewer` → Act as Reviewer: review the developer artifact and all changed files; categorise every issue as **High**, **Medium**, or **Low**; do NOT approve if any High/Medium issues remain unresolved
+- `developer` → Act as Developer: **first** invoke `skills/code-quality/agents/secure-coding.md` in checklist mode to surface the secure coding checklist as a prompt; then implement based on architect and PO artifacts; if returning from reviewer, address all high/medium comments from the reviewer artifact
+- `reviewer` → **first** invoke `skills/code-quality/code-quality.md` in reviewer context; if code-quality reports BLOCKED, return to developer with the blocking findings and do not proceed with the reviewer artifact; if code-quality PASSES, act as Reviewer: review the developer artifact and all changed files; categorise every issue as **High**, **Medium**, or **Low**; do NOT approve if any High/Medium issues remain unresolved
 - `tester` → Act as Tester: **write test cases only** — define test scenarios, inputs, expected outputs, and edge cases; do NOT run or execute anything; hand off to Executor when done
 - `executor` → Act as Executor: run the test cases written by the Tester against the actual implementation; record pass/fail for each case; document any failures with details
 - `po-approval` → Act as Product Owner: review the Executor's findings; if all critical tests pass, **approve** and advance to complete; if failures exist, **reject** and return to developer with a clear list of what must be fixed

@@ -51,6 +51,11 @@ grep -rn "api_key\|secret\|password\|token" --include="*.ts" --include="*.py" --
   --exclude-dir=node_modules --exclude-dir=.git . 2>/dev/null | grep -v "test\|spec\|example" | head -10
 ```
 
+**Code quality — Simplify, Secure Coding, Secret Detection**
+Invoke `skills/code-quality/code-quality.md` in observe mode.
+This runs all three code-quality sub-agents and writes a report to `.dev-framework/artifacts/$SLUG.code-quality-report.md`.
+All findings are advisory in observe mode — no hand-off is blocked.
+
 ## Step 4: Write results to artifact
 
 Read the workspace slug from `.dev-framework/current-workspace`.
