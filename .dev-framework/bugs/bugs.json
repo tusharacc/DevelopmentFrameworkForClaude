@@ -152,5 +152,13 @@
       "created": "2026-05-02T00:00:00Z",
       "workspace": "code-quality-agents"
     }
+    ,{
+      "id": "BUG-020",
+      "title": "code-quality sub-agents have no model assignment (no YAML frontmatter)",
+      "severity": "low",
+      "status": "open",
+      "created": "2026-06-02T00:00:00Z",
+      "workspace": "assign-model-for-commands"
+    }
   ]
 }
