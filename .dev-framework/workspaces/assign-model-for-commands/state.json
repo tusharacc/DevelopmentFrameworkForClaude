@@ -1,0 +1,28 @@
+{
+  "name": "assign-model-for-commands",
+  "type": "feature",
+  "workflowType": "full",
+  "created": "2026-06-02T00:00:00Z",
+  "currentPhase": "po",
+  "status": "active",
+  "branch": "feature/assign-model-for-commands",
+  "roles": {
+    "po": { "status": "in-progress", "completed": null },
+    "architect": { "status": "pending", "completed": null },
+    "developer": { "status": "pending", "completed": null },
+    "reviewer": { "status": "pending", "completed": null },
+    "tester": { "status": "pending", "completed": null },
+    "executor": { "status": "pending", "completed": null },
+    "po-approval": { "status": "pending", "completed": null }
+  },
+  "artifacts": {
+    "po": "artifacts/assign-model-for-commands.po.md",
+    "architect": null,
+    "developer": null,
+    "reviewer": null,
+    "tester": null,
+    "executor": null,
+    "po-approval": null
+  },
+  "timelines": {}
+}
