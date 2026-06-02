@@ -1,7 +1,7 @@
 ---
 name: architect-design
 color: green
-model: sonnet
+model: opus
 tools: Read, Grep, Glob, TodoWrite
 description: Architect - Designs technical solution and creates implementation map
 ---

@@ -1,5 +1,6 @@
 ---
 name: status
+model: haiku
 description: Show current workspace status, phase progress, and next action
 arguments: ""
 examples:

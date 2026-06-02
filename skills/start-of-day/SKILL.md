@@ -1,5 +1,6 @@
 ---
 name: start-of-day
+model: haiku
 description: Resume from the last session checkpoint. Reads the end-of-day checkpoint, presents pending decisions and next action, then asks whether to continue or start something new. Run this at the start of every session.
 arguments: ""
 examples:

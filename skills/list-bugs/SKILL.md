@@ -1,5 +1,6 @@
 ---
 name: list-bugs
+model: haiku
 description: List all bugs, filtered by status or severity
 arguments: "[--open|--in-progress|--fixed|--closed|--all] [--critical|--high|--medium|--low]"
 examples:

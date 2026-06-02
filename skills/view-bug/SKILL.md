@@ -1,5 +1,6 @@
 ---
 name: view-bug
+model: haiku
 description: View full details of a bug report
 arguments: bug-id
 examples:

@@ -1,5 +1,6 @@
 ---
 name: minor-enhancement
+model: haiku
 description: Start a minor enhancement workflow for small improvements to existing behaviour — tweaks, renames, copy changes, config updates. Abbreviated chain — Developer → Reviewer → PO Approval. Use when no new architecture or testing infrastructure is needed.
 arguments: description
 examples:

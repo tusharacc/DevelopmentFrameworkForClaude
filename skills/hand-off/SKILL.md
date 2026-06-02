@@ -1,5 +1,6 @@
 ---
 name: hand-off
+model: haiku
 description: Complete current phase and advance to the next phase in the workflow
 arguments: ""
 examples:

@@ -1,5 +1,6 @@
 ---
 name: framework-manager
+model: haiku
 description: Core state management for development framework - workspace CRUD, state tracking, artifact management
 tools: Read, Write, Glob, Bash
 ---

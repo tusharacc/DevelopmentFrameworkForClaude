@@ -1,5 +1,6 @@
 ---
 name: create-bug
+model: haiku
 description: Create a new bug report and add it to the bug index
 arguments: ""
 examples:

@@ -1,5 +1,6 @@
 ---
 name: observe
+model: sonnet
 description: Run observability checks on the current workspace (linting, types, security, performance, accessibility)
 arguments: ""
 examples:

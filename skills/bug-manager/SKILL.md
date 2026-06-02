@@ -1,5 +1,6 @@
 ---
 name: bug-manager
+model: haiku
 description: Bug tracking operations - create, index, update, query bugs
 tools: Read, Write, Bash
 ---
