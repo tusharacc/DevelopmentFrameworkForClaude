@@ -3,14 +3,14 @@
   "type": "feature",
   "workflowType": "full",
   "created": "2026-06-02T00:00:00Z",
-  "currentPhase": "developer",
+  "currentPhase": "reviewer",
   "status": "active",
   "branch": "feature/assign-model-for-commands",
   "roles": {
     "po": { "status": "complete", "completed": "2026-06-02T00:00:00Z" },
     "architect": { "status": "complete", "completed": "2026-06-02T00:00:00Z" },
-    "developer": { "status": "in-progress", "completed": null },
-    "reviewer": { "status": "pending", "completed": null },
+    "developer": { "status": "complete", "completed": "2026-06-02T00:00:00Z" },
+    "reviewer": { "status": "in-progress", "completed": null },
     "tester": { "status": "pending", "completed": null },
     "executor": { "status": "pending", "completed": null },
     "po-approval": { "status": "pending", "completed": null }
@@ -19,7 +19,7 @@
     "po": "artifacts/assign-model-for-commands.po.md",
     "architect": "artifacts/assign-model-for-commands.architect.md",
     "developer": "artifacts/assign-model-for-commands.developer.md",
-    "reviewer": null,
+    "reviewer": "artifacts/assign-model-for-commands.reviewer.md",
     "tester": null,
     "executor": null,
     "po-approval": null
