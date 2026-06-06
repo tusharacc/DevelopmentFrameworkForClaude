@@ -1,5 +1,6 @@
 ---
 name: init-brownfield
+model: sonnet
 description: Analyze an existing repository and create or update CLAUDE.md with discovered tech stack, directory structure, commands, and conventions. Use this when adopting the dev framework on a project that was not built with it.
 arguments: ""
 examples:

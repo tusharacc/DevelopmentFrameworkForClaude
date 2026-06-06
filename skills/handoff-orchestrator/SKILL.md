@@ -1,5 +1,6 @@
 ---
 name: handoff-orchestrator
+model: haiku
 description: Orchestrate phase transitions, artifact creation, agent invocation, and auto-commit
 tools: Read, Write, Bash, TodoWrite
 ---

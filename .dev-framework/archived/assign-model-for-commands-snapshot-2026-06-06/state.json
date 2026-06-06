@@ -1,0 +1,28 @@
+{
+  "name": "assign-model-for-commands",
+  "type": "feature",
+  "workflowType": "full",
+  "created": "2026-06-02T00:00:00Z",
+  "currentPhase": "complete",
+  "status": "complete",
+  "branch": "feature/assign-model-for-commands",
+  "roles": {
+    "po": { "status": "complete", "completed": "2026-06-02T00:00:00Z" },
+    "architect": { "status": "complete", "completed": "2026-06-02T00:00:00Z" },
+    "developer": { "status": "complete", "completed": "2026-06-02T00:00:00Z" },
+    "reviewer": { "status": "complete", "completed": "2026-06-02T00:00:00Z" },
+    "tester": { "status": "complete", "completed": "2026-06-06T00:00:00Z" },
+    "executor": { "status": "complete", "completed": "2026-06-06T00:00:00Z" },
+    "po-approval": { "status": "complete", "completed": "2026-06-06T00:00:00Z" }
+  },
+  "artifacts": {
+    "po": "artifacts/assign-model-for-commands.po.md",
+    "architect": "artifacts/assign-model-for-commands.architect.md",
+    "developer": "artifacts/assign-model-for-commands.developer.md",
+    "reviewer": "artifacts/assign-model-for-commands.reviewer.md",
+    "tester": "artifacts/assign-model-for-commands.tester.md",
+    "executor": "artifacts/assign-model-for-commands.executor.md",
+    "po-approval": "artifacts/assign-model-for-commands.po-approval.md"
+  },
+  "timelines": {}
+}

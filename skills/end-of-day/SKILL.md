@@ -1,5 +1,6 @@
 ---
 name: end-of-day
+model: haiku
 description: Save a session checkpoint capturing current workspace, phase, decisions made, and pending items. Run this at the end of every session. The checkpoint is read by start-of-day to resume instantly next session.
 arguments: ""
 examples:

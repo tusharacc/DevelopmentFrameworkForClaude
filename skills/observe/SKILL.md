@@ -1,5 +1,6 @@
 ---
 name: observe
+model: sonnet
 description: Run observability checks on the current workspace (linting, types, security, performance, accessibility)
 arguments: ""
 examples:
@@ -50,6 +51,11 @@ npm audit --audit-level=moderate 2>/dev/null || \
 grep -rn "api_key\|secret\|password\|token" --include="*.ts" --include="*.py" --include="*.js" \
   --exclude-dir=node_modules --exclude-dir=.git . 2>/dev/null | grep -v "test\|spec\|example" | head -10
 ```
+
+**Code quality — Simplify, Secure Coding, Secret Detection**
+Invoke `skills/code-quality/code-quality.md` in observe mode.
+This runs all three code-quality sub-agents and writes a report to `.dev-framework/artifacts/$SLUG.code-quality-report.md`.
+All findings are advisory in observe mode — no hand-off is blocked.
 
 ## Step 4: Write results to artifact
 

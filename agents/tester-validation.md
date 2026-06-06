@@ -1,7 +1,7 @@
 ---
 name: tester-validation
 color: red
-model: sonnet
+model: haiku
 tools: Read, Bash, BashOutput, TodoWrite
 description: Tester - Run tests, validate requirements, check for regressions, sign off
 ---

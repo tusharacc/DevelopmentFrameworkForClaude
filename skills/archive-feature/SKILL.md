@@ -1,5 +1,6 @@
 ---
 name: archive-feature
+model: haiku
 description: Archive a completed feature workspace, creating a snapshot
 arguments: feature-name
 examples:

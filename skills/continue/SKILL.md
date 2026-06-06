@@ -1,5 +1,6 @@
 ---
 name: continue
+model: haiku
 description: Advance the current workspace to the next phase. Invoke this skill whenever the user says "continue", "next", "next step", "proceed", "move on", "done", "I'm done", "finished", "complete", "phase complete", "hand off", "handoff", "pass to next", or "advance" — these all mean the same thing as running hand-off.
 arguments: ""
 examples:

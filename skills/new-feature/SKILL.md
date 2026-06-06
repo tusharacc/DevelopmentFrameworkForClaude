@@ -1,5 +1,6 @@
 ---
 name: new-feature
+model: haiku
 description: Start a new feature workflow - creates workspace, artifacts, git branch, and begins PO requirements phase
 arguments: feature-name
 examples:

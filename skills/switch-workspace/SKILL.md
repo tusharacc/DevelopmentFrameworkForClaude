@@ -1,5 +1,6 @@
 ---
 name: switch-workspace
+model: haiku
 description: Switch to a different active workspace and check out its git branch
 arguments: workspace-name
 examples:

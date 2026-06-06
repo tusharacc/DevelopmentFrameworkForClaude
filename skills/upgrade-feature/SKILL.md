@@ -1,5 +1,6 @@
 ---
 name: upgrade-feature
+model: haiku
 description: Start a major feature upgrade with a new workspace and full workflow
 arguments: feature-name
 examples:

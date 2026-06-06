@@ -1,5 +1,6 @@
 ---
 name: artifact-generator
+model: haiku
 description: Generate phase-specific artifact templates for requirements, design, implementation, review, testing, and observability
 tools: Write, Bash
 ---

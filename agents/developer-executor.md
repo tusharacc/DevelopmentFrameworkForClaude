@@ -1,7 +1,7 @@
 ---
 name: developer-executor
 color: purple
-model: sonnet
+model: haiku
 tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 description: Developer - Implements feature following architecture, writes tests, commits code
 ---

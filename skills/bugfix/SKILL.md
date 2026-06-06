@@ -1,5 +1,6 @@
 ---
 name: bugfix
+model: haiku
 description: Start an abbreviated bug fix workflow (skips PO and Architect phases, starts at Developer)
 arguments: bug-id
 examples:

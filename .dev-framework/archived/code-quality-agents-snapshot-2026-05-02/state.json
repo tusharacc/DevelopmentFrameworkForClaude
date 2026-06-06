@@ -1,0 +1,36 @@
+{
+  "name": "code-quality-agents",
+  "type": "feature",
+  "workflowType": "full",
+  "created": "2026-05-02T00:00:00.000Z",
+  "currentPhase": "complete",
+  "status": "complete",
+  "branch": "feature/code-quality-agents",
+  "roles": {
+    "po": { "status": "completed", "completed": "2026-05-02T00:00:00.000Z" },
+    "architect": { "status": "completed", "completed": "2026-05-02T00:00:00.000Z" },
+    "developer": { "status": "completed", "completed": "2026-05-02T00:00:00.000Z" },
+    "reviewer": { "status": "completed", "completed": "2026-05-02T00:00:00.000Z" },
+    "tester": { "status": "completed", "completed": "2026-05-02T00:00:00.000Z" },
+    "executor": { "status": "completed", "completed": "2026-05-02T00:00:00.000Z" },
+    "po-approval": { "status": "completed", "completed": "2026-05-02T00:00:00.000Z" }
+  },
+  "artifacts": {
+    "po": "artifacts/code-quality-agents.po.md",
+    "architect": "artifacts/code-quality-agents.architect.md",
+    "developer": "artifacts/code-quality-agents.developer.md",
+    "reviewer": "artifacts/code-quality-agents.reviewer.md",
+    "tester": "artifacts/code-quality-agents.tester.md",
+    "executor": "artifacts/code-quality-agents.executor.md",
+    "po-approval": "artifacts/code-quality-agents.po-approval.md"
+  },
+  "timelines": {
+    "po_complete": "2026-05-02T00:00:00.000Z",
+    "architect_complete": "2026-05-02T00:00:00.000Z",
+    "developer_complete": "2026-05-02T00:00:00.000Z",
+    "reviewer_complete": "2026-05-02T00:00:00.000Z",
+    "tester_complete": "2026-05-02T00:00:00.000Z",
+    "executor_complete": "2026-05-02T00:00:00.000Z",
+    "po-approval_complete": "2026-05-02T00:00:00.000Z"
+  }
+}

@@ -1,5 +1,6 @@
 ---
 name: list-workspaces
+model: haiku
 description: List all workspaces with their current phase and status
 arguments: "[--all|--active|--archived]"
 examples:

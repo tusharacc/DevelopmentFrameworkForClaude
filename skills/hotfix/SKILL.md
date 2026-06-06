@@ -1,5 +1,6 @@
 ---
 name: hotfix
+model: haiku
 description: Start an urgent hotfix workflow for critical production issues. Abbreviated chain — Developer → Reviewer → PO Approval. Use for production outages, security vulnerabilities, or critical regressions.
 arguments: issue-description
 examples:

@@ -1,5 +1,6 @@
 ---
 name: explore
+model: sonnet
 description: Explore and harden a vague idea or requirement through back-and-forth discussion before starting a formal workflow. Acts as a senior developer peer to progressively sharpen the thinking — then produces a markdown brief ready for the PO agent. Use before /dev-framework:new-feature when the idea is not yet clear.
 arguments: topic-or-idea
 examples:
