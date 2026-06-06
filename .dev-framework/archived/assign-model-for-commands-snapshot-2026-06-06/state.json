@@ -4,8 +4,7 @@
   "workflowType": "full",
   "created": "2026-06-02T00:00:00Z",
   "currentPhase": "complete",
-  "status": "archived",
-  "archivedDate": "2026-06-06T00:00:00Z",
+  "status": "complete",
   "branch": "feature/assign-model-for-commands",
   "roles": {
     "po": { "status": "complete", "completed": "2026-06-02T00:00:00Z" },
